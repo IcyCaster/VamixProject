@@ -19,7 +19,7 @@ import javax.swing.JSlider;
 import javax.swing.SwingWorker;
 import javax.swing.border.BevelBorder;
 
-import VamixProject.bashCommand.BashCommandPanel;
+import VamixProject.optionPanels.BashCommandPanel;
 import VamixProject.mainSystem.MainFrame;
 
 /**

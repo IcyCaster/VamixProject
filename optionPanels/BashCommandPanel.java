@@ -1,4 +1,4 @@
-package VamixProject.bashCommand;
+package VamixProject.optionPanels;
 
 import javax.swing.JPanel;
 

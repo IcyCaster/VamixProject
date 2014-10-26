@@ -22,9 +22,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import videoPlayer.VideoPlayer;
+import VamixProject.videoPlayer.VideoPlayer;
 
-import VamixProject.bashCommand.BashCommandPanel;
+import VamixProject.optionPanels.BashCommandPanel;
 import VamixProject.optionPanels.download.DownloadPane;
 import VamixProject.optionPanels.effects.EffectsPane;
 import VamixProject.optionPanels.speedAdjustment.SpeedAdjustPane;
@@ -32,7 +32,7 @@ import VamixProject.optionPanels.subtitle.SubtitlePane;
 import VamixProject.optionPanels.textEdit.TextEditPane;
 import VamixProject.optionPanels.title.TitlePane;
 import VamixProject.optionPanels.videoEdit.VideoEditPane;
-import audioEdit.AudioEditMaster;
+import VamixProject.optionPanels.audioEdit.AudioEditMaster;
 
 
 /**

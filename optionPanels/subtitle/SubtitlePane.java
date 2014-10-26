@@ -29,7 +29,7 @@ import javax.swing.SwingWorker;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 
-import VamixProject.bashCommand.BashCommandPanel;
+import VamixProject.optionPanels.BashCommandPanel;
 import VamixProject.mainSystem.MainFrame;
 
 public class SubtitlePane extends BashCommandPanel {

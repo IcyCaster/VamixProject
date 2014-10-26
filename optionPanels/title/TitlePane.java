@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
-import VamixProject.bashCommand.BashCommandPanel;
+import VamixProject.optionPanels.BashCommandPanel;
 
 /**
  * The title pane hold the aesthetically pleasing image of VAMIX which gives the users

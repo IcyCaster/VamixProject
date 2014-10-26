@@ -35,10 +35,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.border.BevelBorder;
 
-import VamixProject.bashCommand.BashCommandPanel;
+import VamixProject.optionPanels.BashCommandPanel;
 import VamixProject.mainSystem.MainFrame;
 
-import videoPlayer.VideoPlayer;
+import VamixProject.videoPlayer.VideoPlayer;
 
 /**
  * Used for text editing. Heavily edited from assignmennt 3.
