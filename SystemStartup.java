@@ -1,4 +1,4 @@
-package Vamix206;
+package VamixProject;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

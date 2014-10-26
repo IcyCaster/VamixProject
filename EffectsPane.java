@@ -1,4 +1,4 @@
-package Vamix206;
+package VamixProject;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,8 +24,6 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.border.BevelBorder;
-
-import Vamix206.SubtitlePane.chooserHandler;
 
 /**
  * 

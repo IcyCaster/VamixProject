@@ -1,4 +1,4 @@
-package Vamix206;
+package VamixProject;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
