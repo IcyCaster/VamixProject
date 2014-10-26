@@ -1,21 +1,26 @@
-package VamixProject;
+package VamixProject.mainSystem;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+
 /**
  * This is the main method of our VAMIX project.
- * It starts up the MainFrame singleton and sets the "lookAndFeel"
- * of the system and it's GUI.
+ * Firstly it sets the look-and-feel of the system.
+ * Next it creates a singleton of the system in a new thread.
  * 
  * @author Chester Booker
  *
  */
 public class SystemStartup {
 
+	/**
+	 * The Main Method
+	 */
 	public static void main(String[] args) {
 
 		try {
@@ -29,8 +34,13 @@ public class SystemStartup {
 			e.printStackTrace();
 		}
 
-		// Creates the new mainframe.
-		MainFrame.getInstance();
-		
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				// Creates the new mainframe object since this is the first call to the singleton.
+				MainFrame.getInstance();
+			}
+		});
 	}
 }

@@ -1,4 +1,4 @@
-package VamixProject;
+package VamixProject.videoPlayer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,6 +24,8 @@ import javax.swing.SwingWorker;
 import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import VamixProject.mainSystem.MainFrame;
 
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;

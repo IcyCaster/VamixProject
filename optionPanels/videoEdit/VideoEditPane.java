@@ -1,4 +1,4 @@
-package VamixProject;
+package VamixProject.optionPanels.videoEdit;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -23,6 +23,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
+
+import VamixProject.bashCommand.BashCommandPanel;
+import VamixProject.mainSystem.MainFrame;
 
 public class VideoEditPane extends BashCommandPanel {
 

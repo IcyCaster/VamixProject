@@ -1,4 +1,4 @@
-package VamixProject;
+package VamixProject.optionPanels.speedAdjustment;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -18,6 +18,9 @@ import javax.swing.JProgressBar;
 import javax.swing.JSlider;
 import javax.swing.SwingWorker;
 import javax.swing.border.BevelBorder;
+
+import VamixProject.bashCommand.BashCommandPanel;
+import VamixProject.mainSystem.MainFrame;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package VamixProject;
+package VamixProject.optionPanels.title;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
+
+import VamixProject.bashCommand.BashCommandPanel;
 
 /**
  * The title pane hold the aesthetically pleasing image of VAMIX which gives the users

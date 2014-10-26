@@ -1,4 +1,4 @@
-package VamixProject;
+package VamixProject.optionPanels.download;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -23,6 +23,8 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.border.BevelBorder;
+
+import VamixProject.bashCommand.BashCommandPanel;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package VamixProject;
+package VamixProject.mainSystem;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,6 +21,19 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import videoPlayer.VideoPlayer;
+
+import VamixProject.bashCommand.BashCommandPanel;
+import VamixProject.optionPanels.download.DownloadPane;
+import VamixProject.optionPanels.effects.EffectsPane;
+import VamixProject.optionPanels.speedAdjustment.SpeedAdjustPane;
+import VamixProject.optionPanels.subtitle.SubtitlePane;
+import VamixProject.optionPanels.textEdit.TextEditPane;
+import VamixProject.optionPanels.title.TitlePane;
+import VamixProject.optionPanels.videoEdit.VideoEditPane;
+import audioEdit.AudioEditMaster;
+
 
 /**
  * This is a singleton as there should only exist one MainFrame at one given time.

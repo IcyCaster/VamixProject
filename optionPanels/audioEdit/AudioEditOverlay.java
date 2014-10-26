@@ -1,4 +1,4 @@
-package VamixProject;
+package VamixProject.audioEdit;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -14,6 +14,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
+
+import VamixProject.bashCommand.BashCommandPanel;
+import VamixProject.mainSystem.MainFrame;
 
 /**
  * 

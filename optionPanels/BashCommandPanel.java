@@ -1,4 +1,4 @@
-package VamixProject;
+package VamixProject.bashCommand;
 
 import javax.swing.JPanel;
 
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  */
 public class BashCommandPanel extends JPanel {
 
-	static Process runBashCommand(String cmd) throws Exception {
+	public static Process runBashCommand(String cmd) throws Exception {
 		ProcessBuilder s = new ProcessBuilder("/bin/bash", "-c",cmd);
 		Process sProcess = s.start();
 		return sProcess;
