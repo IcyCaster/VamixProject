@@ -1,0 +1,84 @@
+██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗    ████████╗ ██████╗ 
+██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝    ╚══██╔══╝██╔═══██╗
+██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗         ██║   ██║   ██║
+██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝         ██║   ██║   ██║
+╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗       ██║   ╚██████╔╝
+
+
+		██╗   ██╗ █████╗ ███╗   ███╗██╗██╗  ██╗██╗██╗██╗
+		██║   ██║██╔══██╗████╗ ████║██║╚██╗██╔╝██║██║██║
+		██║   ██║███████║██╔████╔██║██║ ╚███╔╝ ██║██║██║
+		╚██╗ ██╔╝██╔══██║██║╚██╔╝██║██║ ██╔██╗ ╚═╝╚═╝╚═╝
+ 		 ╚████╔╝ ██║  ██║██║ ╚═╝ ██║██║██╔╝ ██╗██╗██╗██╗
+
+
+AUTHOR: Chester Booker
+
+To run VAMIX:
+1) Make sure the Vamix.jar file is set as executable.
+2) Either double-click on the Vamix.jar file or type "java -jar Vamix.jar"
+   into the command-line while in the directory of the .jar file.
+
+Note: Please make sure your computer has vlcj installed.
+
+
+
+HOTKEYS: 
+
+Alt + S = Select Media Chooser
+Alt + D = Downloader
+Alt + U = Add Subtitle Panel
+Alt + E = Add Effects Panel
+Alt + A = Edit Audio Panel
+Alt + T = Edit Text Panel
+Alt + V = Edit Video Panel
+Alt + J = Adjust Speed Panel
+
+Alt + [ANYTHING ELSE] = Home
+(Easy way to remember these is to look at the underlined letters on the buttons)
+
+
+
+Features of Vamix:
+
+- Media chooser. Select either a video or audio file and play it.
+
+- Media downloader. Download an open-souce media file from a URL.
+
+- Media player. Play, Pause, Fastforward, Rewind, Fullscreen, Mute, Skip, Change
+  Volume of a selected media file.
+
+- Subtitle Adder: - Add Subtitles
+		  - Remove Subtitles
+		  - Edit a Subtitle file
+
+- Effect Adder: - Vertical Flip
+		- Horizontal Flip
+		- Blur Effect
+		- Add a Watermark
+
+- Audio Editor: - Replace Audio
+		- Overlay Audio
+		- Strip Audio
+		- Extract Audio
+
+- Video Editor: - Add Fade-in
+		- Add Fade-out
+		- Extract a segments of a video
+
+- Speed Adjuster: - Speed up the video/audio
+		  - Slow down the video/audio
+
+- Text Editor*: - Decide what text to be added
+	        - Add to beginning/end scene
+	        - Choose Duration
+	        - Choose Font
+	        - Choose Size
+	        - Choose Colour
+	        - Choose Position
+	        - Decide whether to add a shadow
+
+		* There is the option to pre-view the text for 3 seconds.
+		* Or permanently add it to the video.
+		** You may save the currently selected options state.
+		** Or load the last save options state.
