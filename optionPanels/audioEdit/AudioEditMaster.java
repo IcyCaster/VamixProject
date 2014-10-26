@@ -1,4 +1,4 @@
-package VamixProject.optionPanels.audioEdit;
+package vamixProject.optionPanels.audioEdit;
 
 import java.io.File;
 
@@ -6,7 +6,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
-import VamixProject.optionPanels.BashCommandPanel;
+import vamixProject.optionPanels.BashCommandPanel;
+
 
 /**
  * 

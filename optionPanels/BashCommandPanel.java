@@ -1,4 +1,4 @@
-package VamixProject.optionPanels;
+package vamixProject.optionPanels;
 
 import javax.swing.JPanel;
 

@@ -1,4 +1,4 @@
-package VamixProject.optionPanels.subtitle;
+package vamixProject.optionPanels.subtitle;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -29,8 +29,9 @@ import javax.swing.SwingWorker;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 
-import VamixProject.optionPanels.BashCommandPanel;
-import VamixProject.mainSystem.MainFrame;
+import vamixProject.mainSystem.MainFrame;
+import vamixProject.optionPanels.BashCommandPanel;
+
 
 public class SubtitlePane extends BashCommandPanel {
 

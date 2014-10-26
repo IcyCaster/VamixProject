@@ -1,4 +1,4 @@
-package VamixProject.optionPanels.textEdit;
+package vamixProject.optionPanels.textEdit;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -35,10 +35,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.border.BevelBorder;
 
-import VamixProject.optionPanels.BashCommandPanel;
-import VamixProject.mainSystem.MainFrame;
+import vamixProject.mainSystem.MainFrame;
+import vamixProject.optionPanels.BashCommandPanel;
+import vamixProject.videoPlayer.VideoPlayer;
 
-import VamixProject.videoPlayer.VideoPlayer;
+
 
 /**
  * Used for text editing. Heavily edited from assignmennt 3.

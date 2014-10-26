@@ -1,4 +1,4 @@
-package VamixProject.mainSystem;
+package vamixProject.mainSystem;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,17 +22,19 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import VamixProject.videoPlayer.VideoPlayer;
+import vamixProject.mainSystem.buttonListenersAndImages.DownloadMouseListener;
+import vamixProject.optionPanels.BashCommandPanel;
+import vamixProject.optionPanels.audioEdit.AudioEditMaster;
+import vamixProject.optionPanels.download.DownloadPane;
+import vamixProject.optionPanels.effects.EffectsPane;
+import vamixProject.optionPanels.speedAdjustment.SpeedAdjustPane;
+import vamixProject.optionPanels.subtitle.SubtitlePane;
+import vamixProject.optionPanels.textEdit.TextEditPane;
+import vamixProject.optionPanels.title.TitlePane;
+import vamixProject.optionPanels.videoEdit.VideoEditPane;
+import vamixProject.videoPlayer.VideoPlayer;
 
-import VamixProject.optionPanels.BashCommandPanel;
-import VamixProject.optionPanels.download.DownloadPane;
-import VamixProject.optionPanels.effects.EffectsPane;
-import VamixProject.optionPanels.speedAdjustment.SpeedAdjustPane;
-import VamixProject.optionPanels.subtitle.SubtitlePane;
-import VamixProject.optionPanels.textEdit.TextEditPane;
-import VamixProject.optionPanels.title.TitlePane;
-import VamixProject.optionPanels.videoEdit.VideoEditPane;
-import VamixProject.optionPanels.audioEdit.AudioEditMaster;
+
 
 
 /**
@@ -43,6 +45,7 @@ import VamixProject.optionPanels.audioEdit.AudioEditMaster;
  * @author Chester Booker and Frankie Lam
  */
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 
 	// Holds the singleton instance.
@@ -211,21 +214,7 @@ public class MainFrame extends JFrame {
 			}
 		});
 
-		_downloadButton.addMouseListener(new MouseAdapter()
-		{
-			public void mouseEntered(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon(_downloadURL);
-				_downloadButton.setText("");
-				_downloadButton.setIcon(icon);
-			}
-			public void mouseExited(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon("");
-				_downloadButton.setText("<html><center><u>D</u>ownload<br>Media</center></html>");
-				_downloadButton.setIcon(icon);
-			}
-		});
+		_downloadButton.addMouseListener(new DownloadMouseListener(_downloadButton));
 
 		_addSubtitlesButton.addMouseListener(new MouseAdapter()
 		{
@@ -498,6 +487,10 @@ public class MainFrame extends JFrame {
 	 */
 	public void toggleExtract(boolean status){
 		_audioEditPane.toggleExtract(status);
+	}
+
+	public JButton getDownloadButton() {
+		return _downloadButton;
 	}
 
 }

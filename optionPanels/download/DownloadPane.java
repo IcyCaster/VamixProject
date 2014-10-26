@@ -1,4 +1,4 @@
-package VamixProject.optionPanels.download;
+package vamixProject.optionPanels.download;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -24,7 +24,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.border.BevelBorder;
 
-import VamixProject.optionPanels.BashCommandPanel;
+import vamixProject.optionPanels.BashCommandPanel;
+
 
 /**
  * 

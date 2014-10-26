@@ -1,4 +1,4 @@
-package VamixProject.videoPlayer;
+package vamixProject.videoPlayer;
 
 import java.awt.Dimension;
 import java.awt.Insets;

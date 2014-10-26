@@ -1,4 +1,4 @@
-package VamixProject.videoPlayer;
+package vamixProject.videoPlayer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -25,10 +25,10 @@ import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import VamixProject.mainSystem.MainFrame;
 
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
+import vamixProject.mainSystem.MainFrame;
 
 /**
  * Class that contains the GUI components for playing and controlling media. This class uses the 
