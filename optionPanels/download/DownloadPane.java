@@ -37,6 +37,7 @@ import vamixProject.optionPanels.BashCommandPanel;
  * @author Chester Booker and Frankie Lam
  */
 
+@SuppressWarnings("serial")
 public class DownloadPane extends BashCommandPanel {
 
 	private JPanel _blankPanel1;
@@ -59,6 +60,7 @@ public class DownloadPane extends BashCommandPanel {
 
 	public DownloadPane() {
 
+		// Creates and sets up the GUI
 		setBorder(BorderFactory.createEtchedBorder(BevelBorder.RAISED));
 		setLayout(new BorderLayout(0,0));
 
@@ -120,8 +122,6 @@ public class DownloadPane extends BashCommandPanel {
 		_dlButton.addActionListener(new dlButtonListener());
 		_openSource.addActionListener(new boxHandler());
 		_cancelButton.addActionListener(new cancelHandler());
-
-
 	}
 
 	// Method that toggles the state of the panel; setting the buttons to be disabled 
@@ -140,7 +140,6 @@ public class DownloadPane extends BashCommandPanel {
 
 	// Download button which checks all the fields are correct and starts the download.
 	class dlButtonListener implements ActionListener{
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
@@ -198,17 +197,14 @@ public class DownloadPane extends BashCommandPanel {
 	}
 
 	class cancelHandler implements ActionListener{
-
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			_inner.cancelWork();
 
 		}
-
 	}
 
 	class boxHandler implements ActionListener{
-
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (_dlButton.isEnabled()) {
@@ -256,8 +252,6 @@ public class DownloadPane extends BashCommandPanel {
 		}
 
 		protected void done(){
-			
-			
 			// Shows appropriate message depending on whether the download was successful or not
 			// and sets the buttons to be active again
 			if(_isCancelled){
@@ -339,9 +333,3 @@ public class DownloadPane extends BashCommandPanel {
 		}
 	}
 }
-
-
-
-
-
-

@@ -33,6 +33,7 @@ import vamixProject.mainSystem.MainFrame;
 import vamixProject.optionPanels.BashCommandPanel;
 
 
+@SuppressWarnings("serial")
 public class SubtitlePane extends BashCommandPanel {
 
 	// Sets up GUI and fields
@@ -53,7 +54,7 @@ public class SubtitlePane extends BashCommandPanel {
 	private JPanel _loadPanel;
 	private JButton _loadSubButton;
 
-	private JComboBox _subSelectionBox;
+	private JComboBox<?> _subSelectionBox;
 
 	private JPanel _bottomButtonPanel;
 	private JButton _addSubtitleButton;
@@ -128,7 +129,7 @@ public class SubtitlePane extends BashCommandPanel {
 		options[0] = ("-Select-");
 		options[1] = ("Selected File");
 		options[2] = ("Editable Box");
-		_subSelectionBox = new JComboBox(options);
+		_subSelectionBox = new JComboBox<Object>(options);
 		Border comboBox = BorderFactory.createTitledBorder("Add Subtitle From:");
 		_subSelectionBox.setBorder(comboBox);
 		_subSelectionBox.setPreferredSize(new Dimension(210, 50));	

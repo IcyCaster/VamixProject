@@ -18,7 +18,6 @@ import javax.swing.SwingWorker;
 import vamixProject.mainSystem.MainFrame;
 import vamixProject.optionPanels.BashCommandPanel;
 
-
 /**
  * 
  * Used from Assignment 3 with help from my partner. Was tweaked to suit the final by me.
@@ -27,6 +26,7 @@ import vamixProject.optionPanels.BashCommandPanel;
  * @author Chester Booker and Frankie Lam 
  *
  */
+@SuppressWarnings("serial")
 public class AudioEditOverlay extends BashCommandPanel {
 
 	// Makes all the GUI fields.
@@ -108,7 +108,6 @@ public class AudioEditOverlay extends BashCommandPanel {
 			_outputName.setEnabled(false);
 			_replaceButton.setEnabled(false);
 		}
-
 	}
 	/**
 	 * Toggles the activity of buttons, if status is true, all the buttons are turned on

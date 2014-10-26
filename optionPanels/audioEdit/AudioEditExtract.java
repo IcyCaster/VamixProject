@@ -28,6 +28,7 @@ import vamixProject.optionPanels.BashCommandPanel;
  * @author Chester Booker and Frankie Lam 
  *
  */
+@SuppressWarnings("serial")
 public class AudioEditExtract extends BashCommandPanel{
 
 	private JButton _stripAudio;

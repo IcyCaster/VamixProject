@@ -28,6 +28,7 @@ import vamixProject.mainSystem.MainFrame;
 import vamixProject.optionPanels.BashCommandPanel;
 
 
+@SuppressWarnings("serial")
 public class VideoEditPane extends BashCommandPanel {
 
 	private JPanel _fadePanel;
@@ -57,14 +58,14 @@ public class VideoEditPane extends BashCommandPanel {
 	private JTextField _outputName;
 	private JLabel _mp3Label;
 
-	private JComboBox _comboStartHours;
-	private JComboBox _comboLengthHours;
+	private JComboBox<?> _comboStartHours;
+	private JComboBox<?> _comboLengthHours;
 
-	private JComboBox _comboStartMinutes;
-	private JComboBox _comboLengthMinutes;
+	private JComboBox<?> _comboStartMinutes;
+	private JComboBox<?> _comboLengthMinutes;
 
-	private JComboBox _comboStartSeconds;
-	private JComboBox _comboLengthSeconds;
+	private JComboBox<?> _comboStartSeconds;
+	private JComboBox<?> _comboLengthSeconds;
 
 	private JButton _extractButton;
 	private JButton _extractCancelButton;
@@ -187,8 +188,8 @@ public class VideoEditPane extends BashCommandPanel {
 				hours[h + 1] = Integer.toString(h);
 			}
 		}
-		_comboStartHours = new JComboBox(hours);
-		_comboLengthHours = new JComboBox(hours);
+		_comboStartHours = new JComboBox<Object>(hours);
+		_comboLengthHours = new JComboBox<Object>(hours);
 
 		String[] minutes = new String[62];
 		minutes[0] = "Minutes";
@@ -200,8 +201,8 @@ public class VideoEditPane extends BashCommandPanel {
 				minutes[m + 1] = Integer.toString(m);
 			}
 		}
-		_comboStartMinutes = new JComboBox(minutes);
-		_comboLengthMinutes = new JComboBox(minutes);
+		_comboStartMinutes = new JComboBox<Object>(minutes);
+		_comboLengthMinutes = new JComboBox<Object>(minutes);
 
 		String[] seconds = new String[62];
 		seconds[0] = "Seconds";
@@ -213,8 +214,8 @@ public class VideoEditPane extends BashCommandPanel {
 				seconds[s + 1] = Integer.toString(s);
 			}
 		}
-		_comboStartSeconds = new JComboBox(seconds);
-		_comboLengthSeconds = new JComboBox(seconds);
+		_comboStartSeconds = new JComboBox<Object>(seconds);
+		_comboLengthSeconds = new JComboBox<Object>(seconds);
 
 		// Accepts only backspace and digits 
 		_fadeInTime.addKeyListener(new KeyAdapter() { 
@@ -402,6 +403,7 @@ public class VideoEditPane extends BashCommandPanel {
 					}
 
 					_filePath = MainFrame.getInstance().getVideoFile().getPath();
+					@SuppressWarnings("unused")
 					Process sProcess;
 					try {
 						_fadeProgressBar.setIndeterminate(true);

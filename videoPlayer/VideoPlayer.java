@@ -36,6 +36,7 @@ import vamixProject.mainSystem.MainFrame;
  * @author Chester Booker Frankie Lam 
  *
  */
+@SuppressWarnings("serial")
 public class VideoPlayer extends JPanel {
 
 	private EmbeddedMediaPlayerComponent _videoPlayer; 

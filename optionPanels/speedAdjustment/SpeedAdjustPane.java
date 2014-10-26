@@ -30,6 +30,7 @@ import vamixProject.optionPanels.BashCommandPanel;
  * @author chester
  *
  */
+@SuppressWarnings("serial")
 public class SpeedAdjustPane extends BashCommandPanel {
 
 	private JPanel _speedTop;
@@ -72,7 +73,7 @@ public class SpeedAdjustPane extends BashCommandPanel {
 		_speedSlider.setPreferredSize(new Dimension(160,60));
 
 		// Create the label table for the slider to help the user decide the speed.
-		Hashtable labelTable = new Hashtable();
+		Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
 		labelTable.put( new Integer( 0 ), new JLabel("Normal") );
 		labelTable.put( new Integer( -16 ), new JLabel("÷16") );
 		labelTable.put( new Integer( 16 ), new JLabel("x16") );
@@ -230,9 +231,7 @@ public class SpeedAdjustPane extends BashCommandPanel {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			finally {
-				return null;	
-			}
+			return null;	
 		}
 
 		public void cancelWork() {

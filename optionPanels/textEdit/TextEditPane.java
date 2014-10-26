@@ -55,6 +55,7 @@ import vamixProject.videoPlayer.VideoPlayer;
  * @author chester
  *
  */
+@SuppressWarnings("serial")
 public class TextEditPane extends BashCommandPanel {
 
 	// Overall big panels.
@@ -70,16 +71,16 @@ public class TextEditPane extends BashCommandPanel {
 	// Scene and Duration Options.
 	private JPanel _sceneAndDurationPanel;
 	private JPanel _sceneLabelPanel;
-	private JComboBox _openingOrClosing;
+	private JComboBox<?> _openingOrClosing;
 	private JPanel _durationLabelPanel;
 	private JTextField _timePeriodOfText;
 
 	// Font, Size and Colour Options.
 	private JPanel _fontAndColorPanel;
 	private JPanel _fontLabelPanel;
-	private JComboBox _fontSelection;
+	private JComboBox<?> _fontSelection;
 	private JPanel _sizeLabelPanel;
-	private JComboBox  _sizeSelection;
+	private JComboBox<?>  _sizeSelection;
 	private JPanel _colourLabelPanel;
 	private JButton _colourChooserButton;
 	private JPanel _colourDisplay;
@@ -87,7 +88,7 @@ public class TextEditPane extends BashCommandPanel {
 	// Position and Shadow Options.
 	private JPanel _positionAndShadowPanel;
 	private JPanel _positionLabelPanel;
-	private JComboBox _positionSelection;
+	private JComboBox<?> _positionSelection;
 	private JPanel _shadowLabelPanel;
 	private JCheckBox _shadowCheck;
 
@@ -207,7 +208,7 @@ public class TextEditPane extends BashCommandPanel {
 		sceneOptions[0] = ("-Select-");
 		sceneOptions[1] = ("Opening Scene");
 		sceneOptions[2] = ("Closing Scene");
-		_openingOrClosing = new JComboBox(sceneOptions);
+		_openingOrClosing = new JComboBox<Object>(sceneOptions);
 
 		JPanel blank1 = new JPanel();
 		blank1.setPreferredSize(new Dimension(20,20));
@@ -246,7 +247,7 @@ public class TextEditPane extends BashCommandPanel {
 		fontOptions[3] = ("Sans (Bold)");
 		fontOptions[4] = ("Serif (Regular)");
 		fontOptions[5] = ("Serif (Bold)");
-		_fontSelection = new JComboBox(fontOptions);
+		_fontSelection = new JComboBox<Object>(fontOptions);
 
 		JPanel blank2 = new JPanel();
 		blank2.setPreferredSize(new Dimension(20,20));
@@ -259,7 +260,7 @@ public class TextEditPane extends BashCommandPanel {
 		for(int i = 8; i < 73; i++) {
 			sizeOptions[i-8] = Integer.toString(i);
 		}
-		_sizeSelection = new JComboBox(sizeOptions);
+		_sizeSelection = new JComboBox<Object>(sizeOptions);
 
 		JPanel blank3 = new JPanel();
 		blank3.setPreferredSize(new Dimension(20,20));
@@ -287,7 +288,7 @@ public class TextEditPane extends BashCommandPanel {
 		positionOptions[3] = ("Middle-Center");
 		positionOptions[4] = ("Bottom-Left");
 		positionOptions[5] = ("Bottom-Center");
-		_positionSelection = new JComboBox(positionOptions);
+		_positionSelection = new JComboBox<Object>(positionOptions);
 
 		JPanel blank4 = new JPanel();
 		blank4.setPreferredSize(new Dimension(20,20));
@@ -624,6 +625,7 @@ public class TextEditPane extends BashCommandPanel {
 								previewText.addWindowListener(new java.awt.event.WindowAdapter() {
 									@Override
 									public void windowClosing(WindowEvent e) {
+										@SuppressWarnings("unused")
 										Process sp;
 										try {
 											sp = runBashCommand("rm " + _filePath + "preview.mp4");
@@ -722,6 +724,7 @@ public class TextEditPane extends BashCommandPanel {
 				if (_saveDirectory.exists() && _saveFile.exists()) {				
 					try {
 						// Reads the file.
+						@SuppressWarnings("resource")
 						BufferedReader br = new BufferedReader(new FileReader(_saveFile));
 
 						_textToBeAdded.setText(br.readLine());

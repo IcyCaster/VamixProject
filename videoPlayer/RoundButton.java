@@ -18,6 +18,7 @@ import javax.swing.JButton;
  * @author paranoid-android
  */
 
+@SuppressWarnings("serial")
 public class RoundButton extends JButton {
 
 	// Constructors

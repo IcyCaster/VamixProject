@@ -10,12 +10,8 @@ import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
-import java.net.URL;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -49,12 +45,16 @@ import vamixProject.videoPlayer.VideoPlayer;
  * The main frame is the bulk of VAMIX as it hold all the GUI components together
  * and connects the user to all of its functionality.
  * 
- * @author Chester Booker and Frankie Lam
+ * @author Chester Booker
  */
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 
+	/**
+	 * Singleton Setup and instance.
+	 */
+	
 	// Holds the singleton instance.
 	private static MainFrame _mainFrameInstance = null;
 
@@ -66,6 +66,9 @@ public class MainFrame extends JFrame {
 		return _mainFrameInstance;
 	}
 
+	/**
+	 * Add and create the GUI
+	 */
 	// Main Panel/Pane(s)
 	private JPanel _topFeatures;
 	JPanel _bottomFeatures;
@@ -100,10 +103,6 @@ public class MainFrame extends JFrame {
 	// Video Player.
 	private VideoPlayer _completeVideoPlayer;
 	
-	// Image URLs
-
-	private URL _speedURL =  getClass().getResource("AdjustSpeed.png");
-	
 	// Singleton constructor.
 	protected MainFrame() {
 
@@ -122,25 +121,13 @@ public class MainFrame extends JFrame {
 		_titlePane = new TitlePane();
 		_bottomFeatures.add(_titlePane, BorderLayout.CENTER);                       
 
-		// Initialize download pane
+		// Initialize all of the panes
 		_downloadPane = new DownloadPane();
-
-		// Initialize audioEdit pane
 		_audioEditPane = new AudioEditMaster();
-
-		// Initialize effects pane
 		_effectsPane = new EffectsPane();
-
-		// Initialize videoEdit pane
 		_videoEditPane = new VideoEditPane();
-
-		// Initialize textEdit pane
 		_textEditPane = new TextEditPane();
-
-		// Initialize subtitle pane
 		_subtitlePane = new SubtitlePane();
-
-		// Initialize adjust speed pane
 		_adjustSpeedPane = new SpeedAdjustPane();
 
 		// A panel containing the five buttons: Select Media, Download Media, Edit Media, Edit Text, Save.
@@ -189,20 +176,14 @@ public class MainFrame extends JFrame {
 			}
 		});
 		
+		// Adding the mouse listeners to the buttons.
 		_selectionButton.addMouseListener(new SelectListener(_selectionButton));
-
 		_downloadButton.addMouseListener(new DownloadListener(_downloadButton));
-
 		_addSubtitlesButton.addMouseListener(new AddSubtitleListener(_addSubtitlesButton)); 
-		
 		_addEffectsButton.addMouseListener(new AddEffectsListener(_addEffectsButton));
-
 		_audioEditButton.addMouseListener(new AudioEditListener(_audioEditButton));
-
 		_textEditButton.addMouseListener(new TextEditListener(_textEditButton));
-
 		_videoEditButton.addMouseListener(new VideoEditListener(_videoEditButton));
-
 		_adjustSpeedButton.addMouseListener(new AdjustSpeedListener(_adjustSpeedButton));
 
 		// Go to the download pane.
@@ -241,8 +222,6 @@ public class MainFrame extends JFrame {
 			}	
 		});
 
-
-
 		// Go to the text edit pane.
 		_textEditButton.addActionListener(new ActionListener(){
 			@Override
@@ -255,6 +234,7 @@ public class MainFrame extends JFrame {
 			}
 		});
 
+		// Go to the video edit pane.
 		_videoEditButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -266,6 +246,7 @@ public class MainFrame extends JFrame {
 			}
 		});
 
+		// Go to the adjust speed pane.
 		_adjustSpeedButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -328,6 +309,7 @@ public class MainFrame extends JFrame {
 		pack();
 	}
 
+	// Handler which allows files to be chosen.
 	class chooserHandler implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {

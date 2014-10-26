@@ -9,6 +9,7 @@ import javax.swing.JPanel;
  * @author Chester and Frankie
  *
  */
+@SuppressWarnings("serial")
 public class BashCommandPanel extends JPanel {
 
 	public static Process runBashCommand(String cmd) throws Exception {

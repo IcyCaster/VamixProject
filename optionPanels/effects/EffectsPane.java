@@ -1,7 +1,6 @@
 package vamixProject.optionPanels.effects;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -35,6 +34,7 @@ import vamixProject.optionPanels.BashCommandPanel;
  * @author Chester Booker
  * 
  **/
+@SuppressWarnings("serial")
 public class EffectsPane extends BashCommandPanel {
 
 	// Set up gui
@@ -128,7 +128,7 @@ public class EffectsPane extends BashCommandPanel {
 		_progressBar.setStringPainted(true);
 		_progressBar.setVisible(false);
 
-
+		// Add these sections
 		add(_topSection);
 		add(_middleSection);
 		add(_bottomSection);
@@ -310,9 +310,7 @@ public class EffectsPane extends BashCommandPanel {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			finally {
-				return null;	
-			}
+			return null;	
 		}
 
 		@Override

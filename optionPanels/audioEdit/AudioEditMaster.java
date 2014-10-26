@@ -3,7 +3,6 @@ package vamixProject.optionPanels.audioEdit;
 import java.io.File;
 
 import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
 import vamixProject.optionPanels.BashCommandPanel;
@@ -16,6 +15,7 @@ import vamixProject.optionPanels.BashCommandPanel;
  * @author Chester Booker and Frankie Lam 
  *
  */
+@SuppressWarnings("serial")
 public class AudioEditMaster extends BashCommandPanel {
 
 	// Add both panels.

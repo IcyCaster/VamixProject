@@ -1,7 +1,5 @@
 package vamixProject.optionPanels.title;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.net.URL;
@@ -9,7 +7,6 @@ import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
 import vamixProject.optionPanels.BashCommandPanel;
@@ -22,6 +19,7 @@ import vamixProject.optionPanels.BashCommandPanel;
  * @author Chester Booker and Frankie Lam
  */
 
+@SuppressWarnings("serial")
 public class TitlePane extends BashCommandPanel {
 
 	private URL _vamixImageURL = getClass().getResource("TitleImage.png");
