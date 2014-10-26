@@ -7,14 +7,15 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class DownloadMouseListener extends MouseAdapter{
-	
+public class DownloadListener extends MouseAdapter{
+
 	private URL _downloadURL =  getClass().getResource("buttonImages/Download.png");
 	private JButton _downloadButton;
 
-	public DownloadMouseListener(JButton downloadButton) {
+	public DownloadListener(JButton downloadButton) {
 		_downloadButton = downloadButton;
 	}
+
 	public void mouseEntered(MouseEvent evt)
 	{
 		ImageIcon icon = new ImageIcon(_downloadURL);
@@ -27,5 +28,5 @@ public class DownloadMouseListener extends MouseAdapter{
 		_downloadButton.setText("<html><center><u>D</u>ownload<br>Media</center></html>");
 		_downloadButton.setIcon(icon);
 	}
-	
+
 }

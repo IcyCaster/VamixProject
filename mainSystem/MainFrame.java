@@ -22,7 +22,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import vamixProject.mainSystem.buttonListenersAndImages.DownloadMouseListener;
+import vamixProject.mainSystem.buttonListenersAndImages.AddEffectsListener;
+import vamixProject.mainSystem.buttonListenersAndImages.AdjustSpeedListener;
+import vamixProject.mainSystem.buttonListenersAndImages.AudioEditListener;
+import vamixProject.mainSystem.buttonListenersAndImages.DownloadListener;
+import vamixProject.mainSystem.buttonListenersAndImages.SelectListener;
+import vamixProject.mainSystem.buttonListenersAndImages.TextEditListener;
+import vamixProject.mainSystem.buttonListenersAndImages.AddSubtitleListener;
+import vamixProject.mainSystem.buttonListenersAndImages.VideoEditListener;
 import vamixProject.optionPanels.BashCommandPanel;
 import vamixProject.optionPanels.audioEdit.AudioEditMaster;
 import vamixProject.optionPanels.download.DownloadPane;
@@ -94,13 +101,7 @@ public class MainFrame extends JFrame {
 	private VideoPlayer _completeVideoPlayer;
 	
 	// Image URLs
-	private URL _selectURL = getClass().getResource("Select.png");
-	private URL _downloadURL =  getClass().getResource("Download.png");
-	private URL _audioURL =  getClass().getResource("AudioEdit.png");
-	private URL _effectURL =  getClass().getResource("Effects.png");
-	private URL _videoURL =  getClass().getResource("VideoEdit.png");
-	private URL _textURL =  getClass().getResource("EditText.png");
-	private URL _subURL =  getClass().getResource("Subtitles.png");
+
 	private URL _speedURL =  getClass().getResource("AdjustSpeed.png");
 	
 	// Singleton constructor.
@@ -163,16 +164,6 @@ public class MainFrame extends JFrame {
 		_videoEditButton = new JButton("<html><center>Edit the<br><u>V</u>ideo</center></html>");
 		_adjustSpeedButton = new JButton("<html><center>Ad<u>j</u>ust the<br>Speed</center></html>");
 
-		// Potential for tool tips.
-//		_selectionButton.setToolTipText("Select the \nmedia to edit!");
-//		_downloadButton.setToolTipText("Download a media from the internet!");
-//		_addSubtitlesButton.setToolTipText("Add subtitles to a video!");
-//		_addEffectsButton.setToolTipText("Add effects to a video!");
-//		_audioEditButton.setToolTipText("Edit the audio of a video!");
-//		_textEditButton.setToolTipText("Add text to beginning or\n end scenes!");
-//		_videoEditButton.setToolTipText("Either extract or add a fade to a video!");
-//		_adjustSpeedButton.setToolTipText("Adjust the speed of a video!");
-
 		// Adding the circle buttons.
 		_bigButtons.add(_selectionButton, BorderLayout.CENTER);
 		_bigButtons.add(_downloadButton, BorderLayout.CENTER);
@@ -198,119 +189,21 @@ public class MainFrame extends JFrame {
 			}
 		});
 		
-		_selectionButton.addMouseListener(new MouseAdapter()
-		{
-			public void mouseEntered(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon(_selectURL);
-				_selectionButton.setText("");
-				_selectionButton.setIcon(icon);
-			}
-			public void mouseExited(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon("");
-				_selectionButton.setText("<html><center><u>S</u>elect<br>Media</center></html>");
-				_selectionButton.setIcon(icon);
-			}
-		});
+		_selectionButton.addMouseListener(new SelectListener(_selectionButton));
 
-		_downloadButton.addMouseListener(new DownloadMouseListener(_downloadButton));
+		_downloadButton.addMouseListener(new DownloadListener(_downloadButton));
 
-		_addSubtitlesButton.addMouseListener(new MouseAdapter()
-		{
-			public void mouseEntered(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon(_subURL);
-				_addSubtitlesButton.setText("");
-				_addSubtitlesButton.setIcon(icon);
-			}
-			public void mouseExited(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon("");
-				_addSubtitlesButton.setText("<html><center>Add<br>S<u>u</u>btitles</center></html>");
-				_addSubtitlesButton.setIcon(icon);
-			}
-		});
+		_addSubtitlesButton.addMouseListener(new AddSubtitleListener(_addSubtitlesButton)); 
+		
+		_addEffectsButton.addMouseListener(new AddEffectsListener(_addEffectsButton));
 
-		_addEffectsButton.addMouseListener(new MouseAdapter()
-		{
-			public void mouseEntered(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon(_effectURL);
-				_addEffectsButton.setText("");
-				_addEffectsButton.setIcon(icon);
-			}
-			public void mouseExited(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon("");
-				_addEffectsButton.setText("<html><center>Add<br><u>E</u>ffects</center></html>");
-				_addEffectsButton.setIcon(icon);
-			}
-		});
+		_audioEditButton.addMouseListener(new AudioEditListener(_audioEditButton));
 
-		_audioEditButton.addMouseListener(new MouseAdapter()
-		{
-			public void mouseEntered(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon(_audioURL);
-				_audioEditButton.setText("");
-				_audioEditButton.setIcon(icon);
-			}
-			public void mouseExited(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon("");
-				_audioEditButton.setText("<html><center>Edit the<br><u>A</u>udio</center></html>");
-				_audioEditButton.setIcon(icon);
-			}
-		});
+		_textEditButton.addMouseListener(new TextEditListener(_textEditButton));
 
-		_textEditButton.addMouseListener(new MouseAdapter()
-		{
-			public void mouseEntered(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon(_textURL);
-				_textEditButton.setText("");
-				_textEditButton.setIcon(icon);
-			}
-			public void mouseExited(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon("");
-				_textEditButton.setText("<html><center>Edit the<br><u>T</u>ext</center></html>");
-				_textEditButton.setIcon(icon);
-			}
-		});
+		_videoEditButton.addMouseListener(new VideoEditListener(_videoEditButton));
 
-		_videoEditButton.addMouseListener(new MouseAdapter()
-		{
-			public void mouseEntered(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon(_videoURL);
-				_videoEditButton.setText("");
-				_videoEditButton.setIcon(icon);
-			}
-			public void mouseExited(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon("");
-				_videoEditButton.setText("<html><center>Edit the<br><u>V</u>ideo</center></html>");
-				_videoEditButton.setIcon(icon);
-			}
-		});
-
-		_adjustSpeedButton.addMouseListener(new MouseAdapter()
-		{
-			public void mouseEntered(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon(_speedURL);
-				_adjustSpeedButton.setText("");
-				_adjustSpeedButton.setIcon(icon);
-			}
-			public void mouseExited(MouseEvent evt)
-			{
-				ImageIcon icon = new ImageIcon("");
-				_adjustSpeedButton.setText("<html><center>Ad<u>j</u>ust the<br>Speed</center></html>");
-				_adjustSpeedButton.setIcon(icon);
-			}
-		});
+		_adjustSpeedButton.addMouseListener(new AdjustSpeedListener(_adjustSpeedButton));
 
 		// Go to the download pane.
 		_addEffectsButton.addActionListener(new ActionListener(){
