@@ -23,7 +23,7 @@ import VamixProject.optionPanels.BashCommandPanel;
 
 public class TitlePane extends BashCommandPanel {
 
-	private URL _vamixImageURL = getClass().getResource("Title1.png");
+	private URL _vamixImageURL = getClass().getResource("TitleImage.png");
 	private ImageIcon _vamixImage = new ImageIcon(_vamixImageURL);
 	private JLabel _vamixTitle = new JLabel("", _vamixImage, JLabel.CENTER);
 
