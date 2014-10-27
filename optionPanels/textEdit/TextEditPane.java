@@ -39,21 +39,13 @@ import vamixProject.mainSystem.MainFrame;
 import vamixProject.optionPanels.BashCommandPanel;
 import vamixProject.videoPlayer.VideoPlayer;
 
-
-
 /**
- * Used for text editing. Heavily edited from assignmennt 3.
- * Hase the capability to:
- * - Add a text
- * - Select size
- * - Select Color
- * - Select font
- * - Add shadow
- * - Select position
- * - Beginning or end
- * - Duration
+ * Used for text editing. Heavily edited from assignmennt 3. Hase the capability
+ * to: - Add a text - Select size - Select Color - Select font - Add shadow -
+ * Select position - Beginning or end - Duration
+ * 
  * @author chester
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class TextEditPane extends BashCommandPanel {
@@ -80,7 +72,7 @@ public class TextEditPane extends BashCommandPanel {
 	private JPanel _fontLabelPanel;
 	private JComboBox<?> _fontSelection;
 	private JPanel _sizeLabelPanel;
-	private JComboBox<?>  _sizeSelection;
+	private JComboBox<?> _sizeSelection;
 	private JPanel _colourLabelPanel;
 	private JButton _colourChooserButton;
 	private JPanel _colourDisplay;
@@ -100,14 +92,16 @@ public class TextEditPane extends BashCommandPanel {
 	private JProgressBar _progressBar;
 
 	// Text Labels.
-	private JLabel _textLabel = new JLabel("Text to be added (Max 30 characters): ");
+	private JLabel _textLabel = new JLabel(
+			"Text to be added (Max 30 characters): ");
 	private JLabel _sceneLabel = new JLabel("Add text to this scene: ");
 	private JLabel _durationLabel = new JLabel("Duration: ");
 	private JLabel _fontLabel = new JLabel("Select Font: ");
 	private JLabel _sizeLabel = new JLabel("Select Size: ");
 	private JLabel _colourLabel = new JLabel("Select Colour: ");
 	private JLabel _positionLabel = new JLabel("Select Position: ");
-	private JLabel _shadowLabel = new JLabel("Do you want the text to have a shadow?");
+	private JLabel _shadowLabel = new JLabel(
+			"Do you want the text to have a shadow?");
 
 	// Buttons.
 	private JButton _addTextButton;
@@ -135,7 +129,6 @@ public class TextEditPane extends BashCommandPanel {
 	// Swing Worker
 	private TextEditorWorker _addText = null;
 
-
 	// Locations where the file will be saved.
 	private String _userHome = System.getProperty("user.home");
 	private File _saveDirectory = new File(_userHome + "/.textEdit");
@@ -151,14 +144,14 @@ public class TextEditPane extends BashCommandPanel {
 		setBorder(BorderFactory.createEtchedBorder(BevelBorder.RAISED));
 
 		// Creates the options holder.
-		_optionsHolder = new JPanel(new GridLayout(4,1));
-		_optionsHolder.setPreferredSize(new Dimension(840,160));
+		_optionsHolder = new JPanel(new GridLayout(4, 1));
+		_optionsHolder.setPreferredSize(new Dimension(840, 160));
 		add(_optionsHolder);
 
 		// Creates the options panels.
 		_textInsertPanel = new JPanel();
 		_sceneAndDurationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		_sceneAndDurationPanel.setPreferredSize(new Dimension(840,40));
+		_sceneAndDurationPanel.setPreferredSize(new Dimension(840, 40));
 		_fontAndColorPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		_positionAndShadowPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
@@ -171,19 +164,20 @@ public class TextEditPane extends BashCommandPanel {
 		// Progress Panel.
 		_progressPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		_progressPanel.setBackground(Color.LIGHT_GRAY);
-		_progressPanel.setPreferredSize(new Dimension(840,15));
+		_progressPanel.setPreferredSize(new Dimension(840, 15));
 		add(_progressPanel);
 
 		// A space holder panel, is blank.
 		_blankPanel = new JPanel();
 		_blankPanel.setBackground(Color.WHITE);
-		_blankPanel.setPreferredSize(new Dimension(840,5));
+		_blankPanel.setPreferredSize(new Dimension(840, 5));
 		add(_blankPanel);
 
 		// Create the button holder.
-		_buttonHolderHolder = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-		_buttonHolderHolder.setPreferredSize(new Dimension(740,50));
-		_buttonHolder = new JPanel(new GridLayout(1,4));
+		_buttonHolderHolder = new JPanel(
+				new FlowLayout(FlowLayout.CENTER, 0, 0));
+		_buttonHolderHolder.setPreferredSize(new Dimension(740, 50));
+		_buttonHolder = new JPanel(new GridLayout(1, 4));
 		_buttonHolderHolder.add(_buttonHolder, BorderLayout.CENTER);
 		add(_buttonHolderHolder);
 
@@ -198,8 +192,7 @@ public class TextEditPane extends BashCommandPanel {
 		_textLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
 		_textLabelPanel.add(_textLabel, BorderLayout.CENTER);
 
-
-		// Second ROW 
+		// Second ROW
 		_sceneLabelPanel = new JPanel();
 		_sceneLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
 		_sceneLabelPanel.add(_sceneLabel, BorderLayout.CENTER);
@@ -209,9 +202,10 @@ public class TextEditPane extends BashCommandPanel {
 		sceneOptions[1] = ("Opening Scene");
 		sceneOptions[2] = ("Closing Scene");
 		_openingOrClosing = new JComboBox<Object>(sceneOptions);
-
+		_openingOrClosing.setSelectedItem("Opening Scene");
+		
 		JPanel blank1 = new JPanel();
-		blank1.setPreferredSize(new Dimension(20,20));
+		blank1.setPreferredSize(new Dimension(20, 20));
 
 		_durationLabelPanel = new JPanel();
 		_durationLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
@@ -219,21 +213,23 @@ public class TextEditPane extends BashCommandPanel {
 
 		_timePeriodOfText = new JTextField("60", 6);
 
-		// Accepts only backspace and digits 
-		_timePeriodOfText.addKeyListener(new KeyAdapter() { 
-			public void keyTyped(KeyEvent kEvent) { 
+		// Accepts only backspace and digits
+		_timePeriodOfText.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent kEvent) {
 
-				char c = kEvent.getKeyChar(); 
+				char c = kEvent.getKeyChar();
 
-				if((!(Character.isDigit(c))) && (c != '\b') )
-				{ 
-					kEvent.consume(); 
-				} 
-			} 
-			public void keyReleased(KeyEvent e){} // Blank
-			public void keyPressed(KeyEvent e){} // Blank
+				if ((!(Character.isDigit(c))) && (c != '\b')) {
+					kEvent.consume();
+				}
+			}
+
+			public void keyReleased(KeyEvent e) {
+			} // Blank
+
+			public void keyPressed(KeyEvent e) {
+			} // Blank
 		});
-
 
 		// Third ROW
 		_fontLabelPanel = new JPanel();
@@ -250,20 +246,21 @@ public class TextEditPane extends BashCommandPanel {
 		_fontSelection = new JComboBox<Object>(fontOptions);
 
 		JPanel blank2 = new JPanel();
-		blank2.setPreferredSize(new Dimension(20,20));
+		blank2.setPreferredSize(new Dimension(20, 20));
 
 		_sizeLabelPanel = new JPanel();
 		_sizeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
 		_sizeLabelPanel.add(_sizeLabel, BorderLayout.CENTER);
 
 		String[] sizeOptions = new String[65];
-		for(int i = 8; i < 73; i++) {
-			sizeOptions[i-8] = Integer.toString(i);
+		for (int i = 8; i < 73; i++) {
+			sizeOptions[i - 8] = Integer.toString(i);
 		}
 		_sizeSelection = new JComboBox<Object>(sizeOptions);
-
+		_sizeSelection.setSelectedItem("20");
+		
 		JPanel blank3 = new JPanel();
-		blank3.setPreferredSize(new Dimension(20,20));
+		blank3.setPreferredSize(new Dimension(20, 20));
 
 		_colourLabelPanel = new JPanel();
 		_colourLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
@@ -271,10 +268,10 @@ public class TextEditPane extends BashCommandPanel {
 
 		_colourChooserButton = new JButton("Choose Colour:");
 		_colourDisplay = new JPanel();
-		_colourDisplay.setPreferredSize(new Dimension(25,25));
-		_colourDisplay.setBorder(BorderFactory.createEtchedBorder(BevelBorder.RAISED));
+		_colourDisplay.setPreferredSize(new Dimension(25, 25));
+		_colourDisplay.setBorder(BorderFactory
+				.createEtchedBorder(BevelBorder.RAISED));
 		_colourDisplay.setBackground(Color.BLACK);
-
 
 		// Fourth ROW
 		_positionLabelPanel = new JPanel();
@@ -289,9 +286,10 @@ public class TextEditPane extends BashCommandPanel {
 		positionOptions[4] = ("Bottom-Left");
 		positionOptions[5] = ("Bottom-Center");
 		_positionSelection = new JComboBox<Object>(positionOptions);
+		_positionSelection.setSelectedItem("Top-Center");
 
 		JPanel blank4 = new JPanel();
-		blank4.setPreferredSize(new Dimension(20,20));
+		blank4.setPreferredSize(new Dimension(20, 20));
 
 		_shadowLabelPanel = new JPanel();
 		_shadowLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
@@ -299,12 +297,11 @@ public class TextEditPane extends BashCommandPanel {
 
 		_shadowCheck = new JCheckBox();
 
-
 		// Buttons
 		_addTextButton = new JButton("Add this text!");
-		_addTextButton.setPreferredSize(new Dimension(150,50));
+		_addTextButton.setPreferredSize(new Dimension(150, 50));
 		_showPreviewButton = new JButton("Preview this text!");
-		_cancelButton = new JButton("Cancel!");		
+		_cancelButton = new JButton("Cancel!");
 		Color cbColour = Color.decode("#ff7900");
 		_cancelButton.setBackground(cbColour);
 		_cancelButton.setFont(new Font("Ubuntu", Font.BOLD, 20));
@@ -314,7 +311,7 @@ public class TextEditPane extends BashCommandPanel {
 		_loadStateButton = new JButton("Load Last Edit");
 
 		_progressBar = new JProgressBar();
-		_progressBar.setPreferredSize(new Dimension(870,20));
+		_progressBar.setPreferredSize(new Dimension(870, 20));
 		_progressBar.setStringPainted(true);
 		_progressBar.setIndeterminate(true);
 		_progressBar.setVisible(false);
@@ -353,15 +350,17 @@ public class TextEditPane extends BashCommandPanel {
 		_buttonHolder.add(_saveStateButton);
 		_buttonHolder.add(_loadStateButton);
 
-		_colourChooserButton.addActionListener(new ActionListener(){
+		_colourChooserButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Creates the color chooser.
-				Color c = JColorChooser.showDialog(null, "Choose a Color", _colourDisplay.getForeground());
-				if (c != null) {	
+				Color c = JColorChooser.showDialog(null, "Choose a Color",
+						_colourDisplay.getForeground());
+				if (c != null) {
 					// Displays chosen color.
 					_colourDisplay.setBackground(c);
-					String hexCode = String.format("%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
+					String hexCode = String.format("%02x%02x%02x", c.getRed(),
+							c.getGreen(), c.getBlue());
 					_hexColour = "0x" + hexCode;
 				}
 			}
@@ -372,118 +371,153 @@ public class TextEditPane extends BashCommandPanel {
 			public void actionPerformed(ActionEvent arg0) {
 
 				// Makes sure there is a video to add text to.
-				if(MainFrame.getInstance().getVideoPlayer().getVideo().getVideoOutputs() < 1) {
-					JOptionPane.showMessageDialog(new JFrame(), "No Video Selected!", "ERROR", JOptionPane.WARNING_MESSAGE);
-				}
-				else {
+				if (MainFrame.getInstance().getVideoPlayer().getVideo()
+						.getVideoOutputs() < 1) {
+					JOptionPane.showMessageDialog(new JFrame(),
+							"No Video Selected!", "ERROR",
+							JOptionPane.WARNING_MESSAGE);
+				} else {
 					// Makes sure text is being added.
-					if(_textToBeAdded.getText().equals("")) {
-						JOptionPane.showMessageDialog(new JFrame(), "No text added!", "ERROR", JOptionPane.WARNING_MESSAGE);
+					if (_textToBeAdded.getText().equals("")) {
+						JOptionPane.showMessageDialog(new JFrame(),
+								"No text added!", "ERROR",
+								JOptionPane.WARNING_MESSAGE);
 					}
 					// Makes sure text is less than 30 characters.
-					else if(_textToBeAdded.getText().length() >= 30) {
-						JOptionPane.showMessageDialog(new JFrame(), "Maximum 30 characters!", "ERROR", JOptionPane.WARNING_MESSAGE);
-					}
-					else {
-						// Making sure that there is a selection in the opening/closing scene option
-						if(_openingOrClosing.getSelectedItem( ).equals( "-Select-" )) {
-							JOptionPane.showMessageDialog(new JFrame(), "Scene Selection Missing!", "ERROR", JOptionPane.WARNING_MESSAGE);
-						}
-						else {
-							// Determines if it is at the opening or closing scene.
-							if(_openingOrClosing.getSelectedItem().equals( "Opening Scene")) {
+					else if (_textToBeAdded.getText().length() >= 30) {
+						JOptionPane.showMessageDialog(new JFrame(),
+								"Maximum 30 characters!", "ERROR",
+								JOptionPane.WARNING_MESSAGE);
+					} else {
+						// Making sure that there is a selection in the
+						// opening/closing scene option
+						if (_openingOrClosing.getSelectedItem().equals(
+								"-Select-")) {
+							JOptionPane.showMessageDialog(new JFrame(),
+									"Scene Selection Missing!", "ERROR",
+									JOptionPane.WARNING_MESSAGE);
+						} else {
+							// Determines if it is at the opening or closing
+							// scene.
+							if (_openingOrClosing.getSelectedItem().equals(
+									"Opening Scene")) {
 								_drawTextInput = "lt";
-							}
-							else {
+							} else {
 								_drawTextInput = "gt";
 							}
-							if(_timePeriodOfText.getText().equals("")) {
-								JOptionPane.showMessageDialog(new JFrame(), "Time Period Missing!", "ERROR", JOptionPane.WARNING_MESSAGE);
-							}
-							else {
+							if (_timePeriodOfText.getText().equals("")) {
+								JOptionPane.showMessageDialog(new JFrame(),
+										"Time Period Missing!", "ERROR",
+										JOptionPane.WARNING_MESSAGE);
+							} else {
 								// Appends the time to either lt or gt.
-								if(_drawTextInput.equals("lt")) {
-									_duration = "(t," + _timePeriodOfText.getText() + ")";
-								}
-								else {
-									_duration = "(t," + Integer.toString((int)(MainFrame.getInstance().getVideoPlayer().getVideo().getLength()/1000)
-											- Integer.parseInt(_timePeriodOfText.getText())) + ")"; // GET THE VIDEO's LENGTH and minus the video.getLength
+								if (_drawTextInput.equals("lt")) {
+									_duration = "(t,"
+											+ _timePeriodOfText.getText() + ")";
+								} else {
+									_duration = "(t,"
+											+ Integer.toString((int) (MainFrame
+													.getInstance()
+													.getVideoPlayer()
+													.getVideo().getLength() / 1000)
+													- Integer
+															.parseInt(_timePeriodOfText
+																	.getText()))
+											+ ")"; // GET THE VIDEO's LENGTH and
+													// minus the video.getLength
 								}
 
 								_fontColour = ":fontcolor=" + _hexColour;
 
 								// Decides the font type.
-								if(_fontSelection.getSelectedItem().equals("Mono (Regular)")) {
+								if (_fontSelection.getSelectedItem().equals(
+										"Mono (Regular)")) {
 									_fontFile = "FreeMono.ttf";
-								}
-								else if(_fontSelection.getSelectedItem().equals("Mono (Bold)")) {
+								} else if (_fontSelection.getSelectedItem()
+										.equals("Mono (Bold)")) {
 									_fontFile = "FreeMonoBold.ttf";
-								}
-								else if(_fontSelection.getSelectedItem().equals("Sans (Regular)")) {
+								} else if (_fontSelection.getSelectedItem()
+										.equals("Sans (Regular)")) {
 									_fontFile = "FreeSans.ttf	";
-								}
-								else if(_fontSelection.getSelectedItem().equals("Sans (Bold)")) {
+								} else if (_fontSelection.getSelectedItem()
+										.equals("Sans (Bold)")) {
 									_fontFile = "FreeSansBold.ttf";
-								}
-								else if(_fontSelection.getSelectedItem().equals("Serif (Regular)")) {
+								} else if (_fontSelection.getSelectedItem()
+										.equals("Serif (Regular)")) {
 									_fontFile = "FreeSerif.ttf";
-								}
-								else if(_fontSelection.getSelectedItem().equals("Serif (Bold)")) {
+								} else if (_fontSelection.getSelectedItem()
+										.equals("Serif (Bold)")) {
 									_fontFile = "FreeSerifBold.ttf";
 								}
 
 								// Select the position
-								if(_positionSelection.getSelectedItem().equals("Top-Left")) {
+								if (_positionSelection.getSelectedItem()
+										.equals("Top-Left")) {
 									_positionX = 0;
 									_positionY = 0;
-								}
-								else if(_positionSelection.getSelectedItem().equals("Top-Center")) {
-									_positionX = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().width/2;
-									_positionY = 0;	
-								}
-								else if(_positionSelection.getSelectedItem().equals("Middle-Left")) {
+								} else if (_positionSelection.getSelectedItem()
+										.equals("Top-Center")) {
+									_positionX = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().width / 2;
+									_positionY = 0;
+								} else if (_positionSelection.getSelectedItem()
+										.equals("Middle-Left")) {
 									_positionX = 0;
-									_positionY = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().height/2;
-								}
-								else if(_positionSelection.getSelectedItem().equals("Middle-Center")) {
-									_positionX = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().width/2;
-									_positionY = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().height/2;
-								}
-								else if(_positionSelection.getSelectedItem().equals("Bottom-Left")) {
+									_positionY = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().height / 2;
+								} else if (_positionSelection.getSelectedItem()
+										.equals("Middle-Center")) {
+									_positionX = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().width / 2;
+									_positionY = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().height / 2;
+								} else if (_positionSelection.getSelectedItem()
+										.equals("Bottom-Left")) {
 									_positionX = 0;
-									_positionY = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().height;
-								}
-								else if(_positionSelection.getSelectedItem().equals("Bottom-Center")) {
-									_positionX = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().width/2;
-									_positionY = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().height;
+									_positionY = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().height;
+								} else if (_positionSelection.getSelectedItem()
+										.equals("Bottom-Center")) {
+									_positionX = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().width / 2;
+									_positionY = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().height;
 								}
 
 								// Checks shadow
-								if(_shadowCheck.isSelected()) {
+								if (_shadowCheck.isSelected()) {
 									_shadow = ":shadowx=3:shadowy=3";
-								}
-								else if(!_shadowCheck.isSelected()) {
+								} else if (!_shadowCheck.isSelected()) {
 									_shadow = ":shadowx=0:shadowy=0";
-								}							
+								}
 
 								int n = JOptionPane.showConfirmDialog(
-										new JFrame(), "Once text is added to a video"
+										new JFrame(),
+										"Once text is added to a video"
 												+ " it is permanent!\n"
 												+ "Is that okay???",
-												"Confirm!",
-												JOptionPane.YES_NO_OPTION);
+										"Confirm!", JOptionPane.YES_NO_OPTION);
 
 								if (n == 0) {
-									// Creates the swing worker and sets the progress bar to indeterminate.
+									// Creates the swing worker and sets the
+									// progress bar to indeterminate.
 									_progressBar.setIndeterminate(true);
 									_progressBar.setVisible(true);
 									_progressBar.setString("Adding text...");
 									_progressBar.repaint();
 									_cancelButton.setVisible(true);
-									_filePath = MainFrame.getInstance().getVideoFile().getPath();
+									_filePath = MainFrame.getInstance()
+											.getVideoFile().getPath();
 									_addText = new TextEditorWorker();
 									_addText.execute();
-								}						
+								}
 							}
 						}
 					}
@@ -497,110 +531,151 @@ public class TextEditPane extends BashCommandPanel {
 			public void actionPerformed(ActionEvent arg0) {
 
 				// Makes sure there is a video to add text to.
-				if(MainFrame.getInstance().getVideoPlayer().getVideo().getVideoOutputs() < 1) {
-					JOptionPane.showMessageDialog(new JFrame(), "No Video Selected!", "ERROR", JOptionPane.WARNING_MESSAGE);
-				}
-				else {
+				if (MainFrame.getInstance().getVideoPlayer().getVideo()
+						.getVideoOutputs() < 1) {
+					JOptionPane.showMessageDialog(new JFrame(),
+							"No Video Selected!", "ERROR",
+							JOptionPane.WARNING_MESSAGE);
+				} else {
 					// Makes sure text is being added.
-					if(_textToBeAdded.getText().equals("")) {
-						JOptionPane.showMessageDialog(new JFrame(), "No text added!", "ERROR", JOptionPane.WARNING_MESSAGE);
+					if (_textToBeAdded.getText().equals("")) {
+						JOptionPane.showMessageDialog(new JFrame(),
+								"No text added!", "ERROR",
+								JOptionPane.WARNING_MESSAGE);
 					}
 					// Makes sure text is less than 30 characters.
-					else if(_textToBeAdded.getText().length() > 30) {
-						JOptionPane.showMessageDialog(new JFrame(), "Maximum 30 characters!", "ERROR", JOptionPane.WARNING_MESSAGE);
-					}
-					else {
-						// Making sure that there is a selection in the opening/closing scene option
-						if(_openingOrClosing.getSelectedItem( ).equals( "-Select-" )) {
-							JOptionPane.showMessageDialog(new JFrame(), "Scene Selection Missing!", "ERROR", JOptionPane.WARNING_MESSAGE);
-						}
-						else {
-							// Determines if it is at the opening or closing scene.
-							if(_openingOrClosing.getSelectedItem().equals( "Opening Scene")) {
+					else if (_textToBeAdded.getText().length() > 30) {
+						JOptionPane.showMessageDialog(new JFrame(),
+								"Maximum 30 characters!", "ERROR",
+								JOptionPane.WARNING_MESSAGE);
+					} else {
+						// Making sure that there is a selection in the
+						// opening/closing scene option
+						if (_openingOrClosing.getSelectedItem().equals(
+								"-Select-")) {
+							JOptionPane.showMessageDialog(new JFrame(),
+									"Scene Selection Missing!", "ERROR",
+									JOptionPane.WARNING_MESSAGE);
+						} else {
+							// Determines if it is at the opening or closing
+							// scene.
+							if (_openingOrClosing.getSelectedItem().equals(
+									"Opening Scene")) {
 								_drawTextInput = "lt";
-							}
-							else {
+							} else {
 								_drawTextInput = "gt";
 							}
-							if(_timePeriodOfText.getText().equals("")) {
-								JOptionPane.showMessageDialog(new JFrame(), "Time Period Missing!", "ERROR", JOptionPane.WARNING_MESSAGE);
-							}
-							else {
+							if (_timePeriodOfText.getText().equals("")) {
+								JOptionPane.showMessageDialog(new JFrame(),
+										"Time Period Missing!", "ERROR",
+										JOptionPane.WARNING_MESSAGE);
+							} else {
 								// Appends the time to either lt or gt.
-								if(_drawTextInput.equals("lt")) {
-									_duration = "(t," + _timePeriodOfText.getText() + ")";
-								}
-								else {
-									// This is the duration of the text and the end of scene. The total length of clip(milliseconds) / 1000 [converted to seconds]
-									// and then minus the desired duration. This gives the time to start adding the text to the video.
-									_duration = "(t," + Integer.toString((int)(MainFrame.getInstance().getVideoPlayer().getVideo().getLength()/1000)
-											- Integer.parseInt(_timePeriodOfText.getText())) + ")"; 
+								if (_drawTextInput.equals("lt")) {
+									_duration = "(t,"
+											+ _timePeriodOfText.getText() + ")";
+								} else {
+									// This is the duration of the text and the
+									// end of scene. The total length of
+									// clip(milliseconds) / 1000 [converted to
+									// seconds]
+									// and then minus the desired duration. This
+									// gives the time to start adding the text
+									// to the video.
+									_duration = "(t,"
+											+ Integer.toString((int) (MainFrame
+													.getInstance()
+													.getVideoPlayer()
+													.getVideo().getLength() / 1000)
+													- Integer
+															.parseInt(_timePeriodOfText
+																	.getText()))
+											+ ")";
 								}
 
 								_fontColour = ":fontcolor=" + _hexColour;
 
 								// Decides the font type.
-								if(_fontSelection.getSelectedItem().equals("Mono (Regular)")) {
+								if (_fontSelection.getSelectedItem().equals(
+										"Mono (Regular)")) {
 									_fontFile = "FreeMono.ttf";
-								}
-								else if(_fontSelection.getSelectedItem().equals("Mono (Bold)")) {
+								} else if (_fontSelection.getSelectedItem()
+										.equals("Mono (Bold)")) {
 									_fontFile = "FreeMonoBold.ttf";
-								}
-								else if(_fontSelection.getSelectedItem().equals("Sans (Regular)")) {
+								} else if (_fontSelection.getSelectedItem()
+										.equals("Sans (Regular)")) {
 									_fontFile = "FreeSans.ttf	";
-								}
-								else if(_fontSelection.getSelectedItem().equals("Sans (Bold)")) {
+								} else if (_fontSelection.getSelectedItem()
+										.equals("Sans (Bold)")) {
 									_fontFile = "FreeSansBold.ttf";
-								}
-								else if(_fontSelection.getSelectedItem().equals("Serif (Regular)")) {
+								} else if (_fontSelection.getSelectedItem()
+										.equals("Serif (Regular)")) {
 									_fontFile = "FreeSerif.ttf";
-								}
-								else if(_fontSelection.getSelectedItem().equals("Serif (Bold)")) {
+								} else if (_fontSelection.getSelectedItem()
+										.equals("Serif (Bold)")) {
 									_fontFile = "FreeSerifBold.ttf";
 								}
 
 								// Select the position
-								if(_positionSelection.getSelectedItem().equals("Top-Left")) {
+								if (_positionSelection.getSelectedItem()
+										.equals("Top-Left")) {
 									_positionX = 0;
 									_positionY = 0;
-								}
-								else if(_positionSelection.getSelectedItem().equals("Top-Center")) {
-									_positionX = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().width/2;
-									_positionY = 0;	
-								}
-								else if(_positionSelection.getSelectedItem().equals("Middle-Left")) {
+								} else if (_positionSelection.getSelectedItem()
+										.equals("Top-Center")) {
+									_positionX = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().width / 2;
+									_positionY = 0;
+								} else if (_positionSelection.getSelectedItem()
+										.equals("Middle-Left")) {
 									_positionX = 0;
-									_positionY = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().height/2;
-								}
-								else if(_positionSelection.getSelectedItem().equals("Middle-Center")) {
-									_positionX = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().width/2;
-									_positionY = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().height/2;
-								}
-								else if(_positionSelection.getSelectedItem().equals("Bottom-Left")) {
+									_positionY = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().height / 2;
+								} else if (_positionSelection.getSelectedItem()
+										.equals("Middle-Center")) {
+									_positionX = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().width / 2;
+									_positionY = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().height / 2;
+								} else if (_positionSelection.getSelectedItem()
+										.equals("Bottom-Left")) {
 									_positionX = 0;
-									_positionY = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().height;
-								}
-								else if(_positionSelection.getSelectedItem().equals("Bottom-Center")) {
-									_positionX = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().width/2;
-									_positionY = MainFrame.getInstance().getVideoPlayer().getVideo().getVideoDimension().height;
+									_positionY = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().height;
+								} else if (_positionSelection.getSelectedItem()
+										.equals("Bottom-Center")) {
+									_positionX = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().width / 2;
+									_positionY = MainFrame.getInstance()
+											.getVideoPlayer().getVideo()
+											.getVideoDimension().height;
 								}
 
 								// Checks shadow
-								if(_shadowCheck.isSelected()) {
+								if (_shadowCheck.isSelected()) {
 									_shadow = ":shadowx=3:shadowy=3";
-								}
-								else if(!_shadowCheck.isSelected()) {
+								} else if (!_shadowCheck.isSelected()) {
 									_shadow = ":shadowx=0:shadowy=0";
 								}
 
-								_filePath = MainFrame.getInstance().getVideoFile().getPath();
+								_filePath = MainFrame.getInstance()
+										.getVideoFile().getPath();
 
 								final JFrame previewText = new JFrame();
-								previewText.setSize(640,460);  
+								previewText.setSize(640, 460);
 
 								VideoPlayer previewVideoPlayer = new VideoPlayer();
-								previewVideoPlayer.setPreferredSize(new Dimension(640, 460));
-								previewText.add(previewVideoPlayer, BorderLayout.CENTER);
+								previewVideoPlayer
+										.setPreferredSize(new Dimension(640,
+												460));
+								previewText.add(previewVideoPlayer,
+										BorderLayout.CENTER);
 								previewText.setVisible(true);
 								previewText.pack();
 
@@ -608,33 +683,47 @@ public class TextEditPane extends BashCommandPanel {
 
 								try {
 
-									sp = runBashCommand("avconv -i " + _filePath + " -vf \"drawtext=fontfile='/usr/share/" +
-											"fonts/truetype/freefont/" + _fontFile + "':text='" + _textToBeAdded.getText() + "':fontsize=" 
-											+ _sizeSelection.getSelectedItem() + _fontColour + ":x=" + _positionX + ":y=" + _positionY + 
-											_shadow + "\" -strict experimental -t 3 " + _filePath + "preview.mp4");
+									sp = runBashCommand("avconv -i "
+											+ _filePath
+											+ " -vf \"drawtext=fontfile='/usr/share/"
+											+ "fonts/truetype/freefont/"
+											+ _fontFile + "':text='"
+											+ _textToBeAdded.getText()
+											+ "':fontsize="
+											+ _sizeSelection.getSelectedItem()
+											+ _fontColour + ":x=" + _positionX
+											+ ":y=" + _positionY + _shadow
+											+ "\" -strict experimental -t 3 "
+											+ _filePath + "preview.mp4");
 
 									sp.waitFor();
 
-									previewVideoPlayer.playMedia(_filePath + "preview.mp4");
+									previewVideoPlayer.playMedia(_filePath
+											+ "preview.mp4");
 
 								} catch (Exception e) {
 									e.printStackTrace();
 								}
 
-								// When the screen closes dispose to the frame and delete the preview file.
-								previewText.addWindowListener(new java.awt.event.WindowAdapter() {
-									@Override
-									public void windowClosing(WindowEvent e) {
-										@SuppressWarnings("unused")
-										Process sp;
-										try {
-											sp = runBashCommand("rm " + _filePath + "preview.mp4");
-										} catch (Exception e1) {
-											e1.printStackTrace();
-										}
-										previewText.dispose();
-									}
-								});
+								// When the screen closes dispose to the frame
+								// and delete the preview file.
+								previewText
+										.addWindowListener(new java.awt.event.WindowAdapter() {
+											@Override
+											public void windowClosing(
+													WindowEvent e) {
+												@SuppressWarnings("unused")
+												Process sp;
+												try {
+													sp = runBashCommand("rm "
+															+ _filePath
+															+ "preview.mp4");
+												} catch (Exception e1) {
+													e1.printStackTrace();
+												}
+												previewText.dispose();
+											}
+										});
 							}
 						}
 					}
@@ -647,7 +736,7 @@ public class TextEditPane extends BashCommandPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(_addText != null) {
+				if (_addText != null) {
 					_addText.cancelWork();
 				}
 			}
@@ -658,7 +747,7 @@ public class TextEditPane extends BashCommandPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// Deletes the old save file.
-				if(_saveFile.exists()) {
+				if (_saveFile.exists()) {
 					try {
 						Files.delete(_saveFile.toPath());
 					} catch (IOException e) {
@@ -666,7 +755,7 @@ public class TextEditPane extends BashCommandPanel {
 					}
 				}
 				// Checks to make sure there is directory to save to.
-				if(!_saveDirectory.exists()) {
+				if (!_saveDirectory.exists()) {
 					// Makes a new log file and directory.
 					_saveDirectory.mkdir();
 					try {
@@ -676,7 +765,7 @@ public class TextEditPane extends BashCommandPanel {
 					}
 				}
 				// Checks to make sure there is a file to save to.
-				else if(!_saveFile.exists()) {
+				else if (!_saveFile.exists()) {
 					try {
 						// Just makes a new directory.
 						_saveFile.createNewFile();
@@ -685,10 +774,9 @@ public class TextEditPane extends BashCommandPanel {
 					}
 				}
 
-				if(_shadowCheck.isSelected()) {
+				if (_shadowCheck.isSelected()) {
 					_shadowBoolean = true;
-				}
-				else if(!_shadowCheck.isSelected()) {
+				} else if (!_shadowCheck.isSelected()) {
 					_shadowBoolean = false;
 				}
 
@@ -712,7 +800,9 @@ public class TextEditPane extends BashCommandPanel {
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(new JFrame(), "Text Edit State Saved!", "SAVED", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(new JFrame(),
+						"Text Edit State Saved!", "SAVED",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
@@ -721,23 +811,23 @@ public class TextEditPane extends BashCommandPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Makes sure there is a previous saved state.
-				if (_saveDirectory.exists() && _saveFile.exists()) {				
+				if (_saveDirectory.exists() && _saveFile.exists()) {
 					try {
 						// Reads the file.
 						@SuppressWarnings("resource")
-						BufferedReader br = new BufferedReader(new FileReader(_saveFile));
+						BufferedReader br = new BufferedReader(new FileReader(
+								_saveFile));
 
 						_textToBeAdded.setText(br.readLine());
 						_openingOrClosing.setSelectedItem(br.readLine());
 						_timePeriodOfText.setText(br.readLine());
 						_fontSelection.setSelectedItem(br.readLine());
 						_sizeSelection.setSelectedItem(br.readLine());
-						_hexColour = br.readLine();		
+						_hexColour = br.readLine();
 						_positionSelection.setSelectedItem(br.readLine());
-						if(br.readLine().equals("true")) {
+						if (br.readLine().equals("true")) {
 							_shadowBoolean = true;
-						}
-						else {
+						} else {
 							_shadowBoolean = false;
 						}
 						Color cdColour = Color.decode(_hexColour);
@@ -747,15 +837,15 @@ public class TextEditPane extends BashCommandPanel {
 						e1.printStackTrace();
 					}
 
-					if(_shadowBoolean) {
+					if (_shadowBoolean) {
 						_shadowCheck.setSelected(true);
-					}
-					else if(!_shadowBoolean) {
+					} else if (!_shadowBoolean) {
 						_shadowCheck.setSelected(false);
 					}
-				}
-				else {
-					JOptionPane.showMessageDialog(new JFrame(), "No Previous State Saved!", "ERROR", JOptionPane.WARNING_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(new JFrame(),
+							"No Previous State Saved!", "ERROR",
+							JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -772,50 +862,61 @@ public class TextEditPane extends BashCommandPanel {
 
 			try {
 
-				sProcess = runBashCommand("avconv -i " + _filePath + " -vf \"drawtext=fontfile='/usr/share/" +
-						"fonts/truetype/freefont/" + _fontFile + "':text='" + _textToBeAdded.getText() + "':fontsize=" 
-						+ _sizeSelection.getSelectedItem() + _fontColour + ":x=" + _positionX + ":y=" + _positionY + 
-						_shadow + ":draw='" + _drawTextInput + _duration + "'\" -strict experimental " + _filePath + ".mp4");
+				sProcess = runBashCommand("avconv -i " + _filePath
+						+ " -vf \"drawtext=fontfile='/usr/share/"
+						+ "fonts/truetype/freefont/" + _fontFile + "':text='"
+						+ _textToBeAdded.getText() + "':fontsize="
+						+ _sizeSelection.getSelectedItem() + _fontColour
+						+ ":x=" + _positionX + ":y=" + _positionY + _shadow
+						+ ":draw='" + _drawTextInput + _duration
+						+ "'\" -strict experimental " + _filePath + ".mp4");
 
 				sProcess.waitFor();
-				if(!isCancelled) {
+				if (!isCancelled) {
 					// Removes old video copy.
 					sProcess = runBashCommand("rm " + _filePath);
 
-					// Changes the name of the new copy to the same as the old copy.
-					sProcess = runBashCommand("mv " + _filePath + ".mp4 " + _filePath);
+					// Changes the name of the new copy to the same as the old
+					// copy.
+					sProcess = runBashCommand("mv " + _filePath + ".mp4 "
+							+ _filePath);
 				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return null;	
+			return null;
 		}
 
 		@Override
 		protected void done() {
 			// Cancel adding text.
-			if(isCancelled) {
+			if (isCancelled) {
 				_progressBar.setIndeterminate(false);
 				_progressBar.setString("...Cancelled!");
 				_progressBar.validate();
-				JOptionPane.showMessageDialog(new JFrame(), "Text Addition Cancelled", "CANCELLED", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(new JFrame(),
+						"Text Addition Cancelled", "CANCELLED",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 			// Successful adding text.
 			else {
 				_progressBar.setIndeterminate(false);
 				_progressBar.setString("...Completed!");
 				_progressBar.validate();
-				JOptionPane.showMessageDialog(new JFrame(), "Text Addition Successful", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(new JFrame(),
+						"Text Addition Successful", "SUCCESS",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 
 			_progressBar.setVisible(false);
 			_cancelButton.setVisible(false);
 
-			MainFrame.getInstance().getVideoPlayer().getVideoPlayer().getMediaPlayer().playMedia(_filePath);
+			MainFrame.getInstance().getVideoPlayer().getVideoPlayer()
+					.getMediaPlayer().playMedia(_filePath);
 		}
 
-		public void cancelWork(){
+		public void cancelWork() {
 			// Destroys the process
 			if (sProcess != null) {
 				isCancelled = true;

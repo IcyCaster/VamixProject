@@ -211,7 +211,9 @@ public class VideoEditPane extends BashCommandPanel {
 			}
 		}
 		_comboStartHours = new JComboBox<Object>(hours);
+		_comboStartHours.setSelectedItem("00");
 		_comboLengthHours = new JComboBox<Object>(hours);
+		_comboLengthHours.setSelectedItem("00");
 
 		String[] minutes = new String[62];
 		minutes[0] = "Minutes";
@@ -224,8 +226,10 @@ public class VideoEditPane extends BashCommandPanel {
 			}
 		}
 		_comboStartMinutes = new JComboBox<Object>(minutes);
+		_comboStartMinutes.setSelectedItem("00");
 		_comboLengthMinutes = new JComboBox<Object>(minutes);
-
+		_comboLengthMinutes.setSelectedItem("01");
+		
 		String[] seconds = new String[62];
 		seconds[0] = "Seconds";
 		for (int s = 0; s < 61; s++) {
@@ -237,8 +241,10 @@ public class VideoEditPane extends BashCommandPanel {
 			}
 		}
 		_comboStartSeconds = new JComboBox<Object>(seconds);
+		_comboStartSeconds.setSelectedItem("00");
 		_comboLengthSeconds = new JComboBox<Object>(seconds);
-
+		_comboLengthSeconds.setSelectedItem("00");
+		
 		// Accepts only backspace and digits 
 		_fadeInTime.addKeyListener(new KeyAdapter() { 
 			public void keyTyped(KeyEvent kEvent) { 

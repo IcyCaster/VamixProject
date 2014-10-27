@@ -231,7 +231,7 @@ public class SubtitlePane extends BashCommandPanel {
 				}
 				else {
 
-					_videoFilePath = MainFrame.getInstance().getVideoFile().getPath();
+					_videoFilePath = MainFrame.getInstance().getVideoPlayer().getVideoName();
 					_progressBar.setIndeterminate(true);
 					_progressBar.setVisible(true);
 					_progressBar.setString("Removing subtitle...");
@@ -257,7 +257,7 @@ public class SubtitlePane extends BashCommandPanel {
 				}
 				else {
 
-					_videoFilePath = MainFrame.getInstance().getVideoFile().getPath();
+					_videoFilePath = MainFrame.getInstance().getVideoPlayer().getVideoName();
 
 					// Decides where to get the subtitles from.
 					if(!_subSelectionBox.getSelectedItem().equals("-Select-")) {

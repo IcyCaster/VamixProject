@@ -260,7 +260,7 @@ public class DownloadPane extends BashCommandPanel {
 			sProcess = _psb.start();
 			InputStream stderr = sProcess.getErrorStream();
 			BufferedReader stderrRead = new BufferedReader(new InputStreamReader(stderr));
-			String line=null;
+			String line = null;
 
 			while ((line = stderrRead.readLine()) != null ) {
 				findPercentage(line);

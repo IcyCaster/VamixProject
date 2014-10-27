@@ -138,7 +138,7 @@ public class SpeedAdjustPane extends BashCommandPanel {
 						JOptionPane.showMessageDialog(new JFrame(), "Video has remained on normal speed.", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
 					}
 					else {
-						_filePath = MainFrame.getInstance().getVideoFile().getPath();
+						_filePath = MainFrame.getInstance().getVideoPlayer().getVideoName();
 						_progressBar.setIndeterminate(true);
 						_addEffectWorker = new EffectWorker();
 
