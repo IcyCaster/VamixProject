@@ -37,27 +37,31 @@ import vamixProject.optionPanels.BashCommandPanel;
 @SuppressWarnings("serial")
 public class EffectsPane extends BashCommandPanel {
 
-	// Set up gui
+	// Sets up the main sections.
 	private JPanel _topSection;
 	private JPanel _middleSection;
 	private JPanel _bottomSection;
 	private JPanel _progressPanel;
 
+	// Adds the buttons for each effect.
 	private JButton _vFlipButton;
 	private JButton _hFlipButton;
 	private JButton _blurButton;
 	private JButton _waterMarkButton;
 
+	// Holds all the image/buttons
 	private JPanel _imageHolderPanel;
 	private JButton _imageChooserButton;
 	private JTextField _imageChooserField;
 
+	// Add the panel which changes based on the effect is selected.
 	private JPanel _addHolderPanel;
 	private JButton _addbutton;
 	private JPanel _dynamicPanel;
 	private JLabel _dynamicLabel;
 	private JButton _cancelButton;
 
+	
 	private JProgressBar _progressBar;
 	private String _filePath;
 	private File _waterMarkFile;

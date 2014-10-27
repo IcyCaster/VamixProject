@@ -241,6 +241,9 @@ public class SpeedAdjustPane extends BashCommandPanel {
 			}		
 		}
 
+		/**
+		 * When the process is complete remove all temp files and notify the user that the process it completed or cancelled.
+		 */
 		@Override
 		protected void done() {
 			_progressBar.setIndeterminate(false);

@@ -32,7 +32,12 @@ import javax.swing.border.Border;
 import vamixProject.mainSystem.MainFrame;
 import vamixProject.optionPanels.BashCommandPanel;
 
-
+/**
+ * The panel providing the user to add/remove/edit subtitles.
+ * They can either add the subtitles from an external file or add them from an editable box.
+ * @author chester
+ *
+ */
 @SuppressWarnings("serial")
 public class SubtitlePane extends BashCommandPanel {
 

@@ -39,45 +39,59 @@ import vamixProject.optionPanels.BashCommandPanel;
 
 @SuppressWarnings("serial")
 public class DownloadPane extends BashCommandPanel {
-
+	
+	// Three main sections.
 	private JPanel _blankPanel1;
 	private JPanel _centerPanel;
 	private JPanel _blankPanel2;
 
+	// Three sections inside the center section.
 	private JPanel _upperSection;
 	private JPanel _midSection;
 	private JPanel _lowerSection;
 
+	// URL holder.
 	private JLabel _URLLabel;
 	private JLabel _openSourceLabel;
 
+	// Check box and downloading buttons and bar.
 	private JTextField _url;
 	private JCheckBox _openSource;
 	private JButton _dlButton;
 	private JButton _cancelButton;
 	private JProgressBar _bar;
+	
+	// Download worker.
 	private InnerWorker _inner = null;
 
+	/**
+	 * This is the constructor for creating and downloading media files from
+	 * the internet. So long as they are confirmed to be open-source.
+	 */
 	public DownloadPane() {
 
 		// Creates and sets up the GUI
 		setBorder(BorderFactory.createEtchedBorder(BevelBorder.RAISED));
 		setLayout(new BorderLayout(0,0));
 
+		// A place for holding the URL
 		_url = new JTextField("-Enter a URL here-");
 		_url.setPreferredSize(new Dimension(200,30));
 
+		// Sets up the open-source check box.
 		_openSource = new JCheckBox();
 		_dlButton = new JButton("Download");
 		_cancelButton = new JButton("Cancel");
 		_cancelButton.setVisible(false);
 
+		// Sets up the progress bar during a download.
 		_bar = new JProgressBar(0,100);
 		_bar.setValue(0);
 		_bar.setStringPainted(true);
 		_bar.setPreferredSize(new Dimension(250,20));
 		_bar.setVisible(false);
 
+		// Hide the download button until open source is selected.
 		_dlButton.setEnabled(false);
 
 		_URLLabel = new JLabel("URL:");
@@ -100,25 +114,30 @@ public class DownloadPane extends BashCommandPanel {
 		_midSection = new JPanel();
 		_lowerSection = new JPanel();
 
-
+		// Adds the parts.
 		add(_blankPanel1, BorderLayout.NORTH);
 		add(_centerPanel, BorderLayout.CENTER);
 		add(_blankPanel2, BorderLayout.SOUTH);
 
+		// Adds the sections into the center panel.
 		_centerPanel.add(_upperSection);
 		_centerPanel.add(_midSection);
 		_centerPanel.add(_lowerSection);
 
+		// Add the URL parts
 		_upperSection.add(_URLLabel);
 		_upperSection.add(_url);
 
+		// Adds the open source selection parts
 		_midSection.add(_openSourceLabel);
 		_midSection.add(_openSource);
 		_midSection.add(_dlButton);
 
+		// Adds the cancel and progress bar, they are initally invisible
 		_lowerSection.add(_cancelButton);
 		_lowerSection.add(_bar);
 
+		// Creates the action listeners to take care of the different buttons.
 		_dlButton.addActionListener(new dlButtonListener());
 		_openSource.addActionListener(new boxHandler());
 		_cancelButton.addActionListener(new cancelHandler());
@@ -196,6 +215,7 @@ public class DownloadPane extends BashCommandPanel {
 		}
 	}
 
+	// Initiates the cancel worker when the cancel button is pressed.
 	class cancelHandler implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -204,6 +224,7 @@ public class DownloadPane extends BashCommandPanel {
 		}
 	}
 
+	// Switches the download button on and off when the checked box is ticked or not.
 	class boxHandler implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -217,6 +238,13 @@ public class DownloadPane extends BashCommandPanel {
 	}
 
 
+	/**
+	 * This is the download worker.
+	 * It executes the downloading task and can be cancelled at any time.
+	 * Reports back any errors in the download to the user.
+	 * @author chester
+	 *
+	 */
 	class InnerWorker extends SwingWorker<Void,String>{
 		boolean _isCancelled;
 		Process sProcess;
@@ -251,9 +279,11 @@ public class DownloadPane extends BashCommandPanel {
 			}
 		}
 
+		/**
+		 * Messages the user about the status of the completed download.
+		 * If it is completed/cancelled/has an error.
+		 */
 		protected void done(){
-			// Shows appropriate message depending on whether the download was successful or not
-			// and sets the buttons to be active again
 			if(_isCancelled){
 				JOptionPane.showMessageDialog(_url, "Cancelled");
 				toggleButtons(true);
@@ -308,6 +338,9 @@ public class DownloadPane extends BashCommandPanel {
 			_bar.setVisible(false);	
 		}
 
+		/**
+		 * Processes the percentage and updates the progress bar.
+		 */
 		@Override
 		protected void process(List<String> chunks){
 			for (int i=0;i<chunks.size();i++){
@@ -321,8 +354,10 @@ public class DownloadPane extends BashCommandPanel {
 			_psb = psb;
 		}
 
+		/**
+		 * Destroys the process and resets the buttons so they are enabled.
+		 */
 		public void cancelWork(){
-			//Destroys the process and sets the buttons to be active again
 			if (sProcess!=null){
 				_isCancelled=true;
 				sProcess.destroy();

@@ -87,7 +87,7 @@ public class VideoPlayer extends JPanel {
 
 	public VideoPlayer() {
 
-		
+		// The GUI was set up
 		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		setBackground(Color.LIGHT_GRAY);
 
