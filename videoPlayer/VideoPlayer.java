@@ -54,6 +54,7 @@ public class VideoPlayer extends JPanel {
 	private JButton _muteButton; 
 	private JSlider _volumeControl;
 	
+	// All the URLs for the icons
 	private URL _fullScreenImageURL = getClass().getResource("FullScreen.png");
 	private URL _RRImageURL =  getClass().getResource("Rewind.png");
 	private URL _playImageURL =  getClass().getResource("PlayButton.png");
@@ -62,6 +63,7 @@ public class VideoPlayer extends JPanel {
 	private URL _soundImageURL =  getClass().getResource("Sound.png");
 	private URL _noSoundImageURL =  getClass().getResource("NoSound.png");
 	
+	// Creates the images based on the URL
 	private ImageIcon _fullScreenImage = new ImageIcon(_fullScreenImageURL);
 	private ImageIcon _RRImage =  new ImageIcon(_RRImageURL);
 	private ImageIcon _playImage =  new ImageIcon(_playImageURL);
@@ -70,6 +72,7 @@ public class VideoPlayer extends JPanel {
 	private ImageIcon _soundImage =  new ImageIcon(_soundImageURL);
 	private ImageIcon _noSoundImage =  new ImageIcon(_noSoundImageURL);
 
+	// Holds what state the video player is in
 	private boolean _isPlaying = true;
 	private boolean _isSound = true;
 	private boolean _isFastForwarding = false;
@@ -78,6 +81,7 @@ public class VideoPlayer extends JPanel {
 	private VideoSkipWorker _fastForwardWorker = null;
 	private VideoSkipWorker _rewindingWorker = null;
 
+	// Videos name
 	private String _videoName; 
 
 	private Timer _progress;

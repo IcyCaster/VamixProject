@@ -61,18 +61,21 @@ public class EffectsPane extends BashCommandPanel {
 	private JLabel _dynamicLabel;
 	private JButton _cancelButton;
 
-	
+	// The progress bar
 	private JProgressBar _progressBar;
+
+	// The file path of the selected video
 	private String _filePath;
+
 	private File _waterMarkFile;
 	private JFileChooser _watermarkChooser = new JFileChooser();
 	private EffectWorker _addEffectWorker = null;
-	
+
 	private URL _blurURL = getClass().getResource("Blur.png");
 	private URL _vURL =  getClass().getResource("VFlip.png");
 	private URL _hURL =  getClass().getResource("HFlip.png");
 	private URL _waterURL =  getClass().getResource("Watermark.png");
-	
+
 	private ImageIcon _blur = new ImageIcon(_blurURL);
 	private ImageIcon _v =  new ImageIcon(_vURL);
 	private ImageIcon _h =  new ImageIcon(_hURL);
@@ -83,6 +86,7 @@ public class EffectsPane extends BashCommandPanel {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		setBorder(BorderFactory.createEtchedBorder(BevelBorder.RAISED));
 
+		// Top sections holds the buttons
 		_topSection = new JPanel(new GridLayout(1,6,0,0));
 		_topSection.setPreferredSize(new Dimension(500,120));
 
@@ -98,16 +102,19 @@ public class EffectsPane extends BashCommandPanel {
 		JPanel blank1 = new JPanel();
 		JPanel blank2 = new JPanel();
 
+		// Effects buttons
 		_vFlipButton = new JButton();
 		_hFlipButton = new JButton();
 		_blurButton = new JButton();
 		_waterMarkButton = new JButton();
-		
+
+		// Sets the icons onto the buttons
 		_vFlipButton.setIcon(_v);
 		_hFlipButton.setIcon(_h);
 		_blurButton.setIcon(_blur);
 		_waterMarkButton.setIcon(_water);
 
+		// Holds a place to select a watermark for the users to use.
 		_imageHolderPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		_imageHolderPanel.setPreferredSize(new Dimension(400,40));
 		_imageHolderPanel.setVisible(false);
@@ -119,13 +126,19 @@ public class EffectsPane extends BashCommandPanel {
 
 		_addHolderPanel = new JPanel(new GridLayout(1,3,0,0));
 		_addHolderPanel.setPreferredSize(new Dimension(360,40));
+
+		// Add effect button
 		_addbutton = new JButton("Add Effect!");
+
 		_dynamicPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 10));
 		_dynamicLabel = new JLabel("-No Effect-");
 		_dynamicLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
+
+		// Cancel button
 		_cancelButton = new JButton("Cancel!");
 		_cancelButton.setEnabled(false);
 
+		// Progress bar
 		_progressBar = new JProgressBar();
 		_progressBar.setIndeterminate(true);
 		_progressBar.setPreferredSize(new Dimension(360,15));
@@ -157,7 +170,7 @@ public class EffectsPane extends BashCommandPanel {
 
 		_progressPanel.add(_progressBar, BorderLayout.CENTER);
 
-
+		// When the Vertical Flip Button is pressed.
 		_vFlipButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -177,7 +190,7 @@ public class EffectsPane extends BashCommandPanel {
 			}	
 		});
 
-		// When the Horizontal Blur is pressed.
+		// When the Blur Button is pressed.
 		_blurButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -187,7 +200,7 @@ public class EffectsPane extends BashCommandPanel {
 			}	
 		});
 
-		// When the Horizontal Watermark is pressed.
+		// When the Water mark Button is pressed.
 		_waterMarkButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -216,7 +229,8 @@ public class EffectsPane extends BashCommandPanel {
 							JOptionPane.showMessageDialog(new JFrame(), "No Watermark image Selected!", "ERROR", JOptionPane.WARNING_MESSAGE);
 						}
 						else {
-							_filePath = MainFrame.getInstance().getVideoFile().getPath();
+							_filePath = MainFrame.getInstance().getVideoPlayer().getVideoName();
+							System.out.println(_filePath);
 
 							_cancelButton.setEnabled(true);
 							_progressBar.setVisible(true);
@@ -266,6 +280,11 @@ public class EffectsPane extends BashCommandPanel {
 
 	}
 
+	/**
+	 * This handler chooses an image to put onto the water mark.
+	 * @author chester
+	 *
+	 */
 	class chooserHandler implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -308,6 +327,7 @@ public class EffectsPane extends BashCommandPanel {
 		protected Void doInBackground() throws Exception {
 
 			try {
+				System.out.println(effect);
 				sProcess = runBashCommand(Command);
 				sProcess.waitFor();
 
@@ -317,9 +337,12 @@ public class EffectsPane extends BashCommandPanel {
 			return null;	
 		}
 
+		/**
+		 * Reports what process took place. If there was an error, report it to the user.
+		 * If it was cancelled or successful, these were also reported.
+		 */
 		@Override
-		protected void done() {
-
+		protected void done() {			
 			_progressBar.setIndeterminate(false);
 			if(sProcess.exitValue() != 0 && !_isCancelled) {
 				_progressBar.setString("...ERROR!");
@@ -327,8 +350,11 @@ public class EffectsPane extends BashCommandPanel {
 				JOptionPane.showMessageDialog(new JFrame(), "Error! Image either invalid or too big!", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}	
 			else if(_isCancelled) {
+
+				System.out.println("YES");
 				if(effect == Effect.watermark) {
 					try {
+						// If not cancelled, then remove temp water mark file
 						sProcess = runBashCommand("rm " + _filePath + ".withWatermark.mp4");
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -336,6 +362,7 @@ public class EffectsPane extends BashCommandPanel {
 				}
 				else if(effect == Effect.vFlip) {
 					try {
+						// If not cancelled, then remove temp vflip file
 						sProcess = runBashCommand("rm " + _filePath + ".withVflip.mp4");
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -343,6 +370,7 @@ public class EffectsPane extends BashCommandPanel {
 				}
 				else if(effect == Effect.hFlip) {
 					try {
+						// If not cancelled, then remove temp hflip file
 						sProcess = runBashCommand("rm " + _filePath + ".withHflip.mp4");
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -350,6 +378,7 @@ public class EffectsPane extends BashCommandPanel {
 				}
 				else if(effect == Effect.blur) {
 					try {
+						// If not cancelled, then remove temp blur file
 						sProcess = runBashCommand("rm " + _filePath + ".withBlur.mp4");
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -359,33 +388,39 @@ public class EffectsPane extends BashCommandPanel {
 				_progressBar.validate();
 				JOptionPane.showMessageDialog(new JFrame(), "Effect Addition Cancelled!", "CANCELLED", JOptionPane.INFORMATION_MESSAGE);
 			}
-			else if(effect == Effect.watermark) {
-				_progressBar.setString("...Successful!");
-				_progressBar.validate();
-				JOptionPane.showMessageDialog(new JFrame(), "Watermark Addition Successful\n" + "File saved as: " + _filePath + ".withWatermark.mp4", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-				MainFrame.getInstance().getVideoPlayer().playMedia(_filePath + ".withWatermark.mp4");	
-				MainFrame.getInstance().getVideoPlayer().setFilePath(_filePath + ".withWatermark.mp4");
-			}
-			else if(effect == Effect.vFlip) {
-				_progressBar.setString("...Successful!");
-				_progressBar.validate();
-				JOptionPane.showMessageDialog(new JFrame(), "Vertical Flip Successful!\n" + "File saved as: " + _filePath + ".withVflip.mp4", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-				MainFrame.getInstance().getVideoPlayer().playMedia(_filePath + ".withVflip.mp4");
-				MainFrame.getInstance().getVideoPlayer().setFilePath(_filePath + ".withVflip.mp4");
-			}
-			else if(effect == Effect.hFlip) {
-				_progressBar.setString("...Successful!");
-				_progressBar.validate();
-				JOptionPane.showMessageDialog(new JFrame(), "Horizontal Flip Successful!\n" + "File saved as: " + _filePath + ".withHflip.mp4", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-				MainFrame.getInstance().getVideoPlayer().playMedia(_filePath + ".withHflip.mp4");
-				MainFrame.getInstance().getVideoPlayer().setFilePath(_filePath + ".withHflip.mp4");
-			}
-			else if(effect == Effect.blur) {
-				_progressBar.setString("...Successful!");
-				_progressBar.validate();
-				JOptionPane.showMessageDialog(new JFrame(), "Blur Addition Successful!\n" + "File saved as: " + _filePath + ".withBlur.mp4", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-				MainFrame.getInstance().getVideoPlayer().playMedia(_filePath + ".withBlur.mp4");
-				MainFrame.getInstance().getVideoPlayer().setFilePath(_filePath + ".withBlur.mp4");
+			else { 
+				System.out.println("heelo");
+				if(effect == Effect.watermark) {
+					
+					_progressBar.setString("...Successful!");
+					_progressBar.validate();
+					JOptionPane.showMessageDialog(new JFrame(), "Watermark Addition Successful\n" + "File saved as: " + _filePath + ".withWatermark.mp4", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getInstance().getVideoPlayer().playMedia(_filePath + ".withWatermark.mp4");	
+					MainFrame.getInstance().getVideoPlayer().setFilePath(_filePath + ".withWatermark.mp4");
+				}
+				else if(effect == Effect.vFlip) {
+					System.out.println("Hmmmm");
+					_progressBar.setString("...Successful!");
+					_progressBar.validate();
+					JOptionPane.showMessageDialog(new JFrame(), "Vertical Flip Successful!\n" + "File saved as: " + _filePath + ".withVflip.mp4", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getInstance().getVideoPlayer().setFilePath(_filePath + ".withVflip.mp4");
+					MainFrame.getInstance().getVideoPlayer().playMedia(_filePath + ".withVflip.mp4");
+				}
+				else if(effect == Effect.hFlip) {
+					_progressBar.setString("...Successful!");
+					_progressBar.validate();
+					JOptionPane.showMessageDialog(new JFrame(), "Horizontal Flip Successful!\n" + "File saved as: " + _filePath + ".withHflip.mp4", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getInstance().getVideoPlayer().playMedia(_filePath + ".withHflip.mp4");
+					MainFrame.getInstance().getVideoPlayer().setFilePath(_filePath + ".withHflip.mp4");
+					System.out.println(_filePath);
+				}
+				else if(effect == Effect.blur) {
+					_progressBar.setString("...Successful!");
+					_progressBar.validate();
+					JOptionPane.showMessageDialog(new JFrame(), "Blur Addition Successful!\n" + "File saved as: " + _filePath + ".withBlur.mp4", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+					MainFrame.getInstance().getVideoPlayer().playMedia(_filePath + ".withBlur.mp4");
+					MainFrame.getInstance().getVideoPlayer().setFilePath(_filePath + ".withBlur.mp4");
+				}
 			}
 			_cancelButton.setEnabled(false);
 			_progressBar.setVisible(false);

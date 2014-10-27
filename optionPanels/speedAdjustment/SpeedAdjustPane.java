@@ -83,7 +83,7 @@ public class SpeedAdjustPane extends BashCommandPanel {
 
 		JPanel bp2 = new JPanel();
 		bp2.setPreferredSize(new Dimension(840,50));
-
+		// The cancel button
 		_cancelButton = new JButton("Cancel!");
 		_cancelButton.setPreferredSize(new Dimension(60,40));
 		_cancelButton.setVisible(false);
@@ -91,6 +91,7 @@ public class SpeedAdjustPane extends BashCommandPanel {
 		JPanel bp3 = new JPanel();
 		bp3.setPreferredSize(new Dimension(20,40));
 
+		// The progress bar
 		_progressBar = new JProgressBar();
 		_progressBar.setPreferredSize(new Dimension(150,20));
 		_progressBar.setIndeterminate(true);
@@ -102,6 +103,7 @@ public class SpeedAdjustPane extends BashCommandPanel {
 		add(_speedBottom);
 		add(bp2);
 
+		// Adds the buttons and speed slider
 		_speedTop.add(_speedButton);
 		_speedTop.add(bp31);
 		_speedTop.add(_speedLabel);
@@ -123,7 +125,7 @@ public class SpeedAdjustPane extends BashCommandPanel {
 			}
 		});
 
-
+		// Calculates the time needed to increase/decrease the speed and then calls a worker.
 		_speedButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -247,7 +249,7 @@ public class SpeedAdjustPane extends BashCommandPanel {
 		@Override
 		protected void done() {
 			_progressBar.setIndeterminate(false);
-			
+
 			try {
 				sProcess = runBashCommand("rm " + _filePath + ".audio.wav");
 				sProcess = runBashCommand("rm " + _filePath + ".spedup.wav");
@@ -256,7 +258,7 @@ public class SpeedAdjustPane extends BashCommandPanel {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 			if(_isCancelled) {
 				JOptionPane.showMessageDialog(new JFrame(), "Speed Adjust Cancelled", "CANCELLED", JOptionPane.INFORMATION_MESSAGE);
 				_progressBar.setString("...Cancelled!");
@@ -266,7 +268,7 @@ public class SpeedAdjustPane extends BashCommandPanel {
 				_progressBar.setString("...Completed!");
 				MainFrame.getInstance().getVideoPlayer().playMedia(_filePath + "SpeedAdjustment.avi");
 			}
-			
+
 			_progressBar.setVisible(false);
 			_cancelButton.setVisible(false);
 			_cancelButton.validate();		

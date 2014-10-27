@@ -27,22 +27,30 @@ import javax.swing.border.Border;
 import vamixProject.mainSystem.MainFrame;
 import vamixProject.optionPanels.BashCommandPanel;
 
-
+/**
+ * Used for editing the video in two ways. Either adding fades or 
+ * @author chester
+ *
+ */
 @SuppressWarnings("serial")
 public class VideoEditPane extends BashCommandPanel {
 
+	// Two main panels
 	private JPanel _fadePanel;
 	private JPanel _extractPanel;
 
+	// The sections of the fade panel
 	private JPanel _fadeTopSection;
 	private JPanel _fadeMidSection;
 	private JPanel _fadeBottomSection;
 
+	// The sections of the extract panel
 	private JPanel _extractTopSection;
 	private JPanel _extractMidSection;
 	private JPanel _extractBottomSection;
 	private JPanel _extractProgressSection;
 
+	// The fade buttons and the timer fields
 	private JButton _fadeInButton;
 	private JButton _fadeOutButton;
 	private JLabel _fadeInLabel;
@@ -52,12 +60,14 @@ public class VideoEditPane extends BashCommandPanel {
 	private JButton _fadeCancelButton;
 	private JProgressBar _fadeProgressBar;
 
+	// The timer labels
 	private JLabel _startTimeLabel;
 	private JLabel _timeLengthLabel;
 	private JLabel _outputNameLabel;
 	private JTextField _outputName;
 	private JLabel _mp3Label;
 
+	// Combo boxes for the start and length time
 	private JComboBox<?> _comboStartHours;
 	private JComboBox<?> _comboLengthHours;
 
@@ -72,6 +82,8 @@ public class VideoEditPane extends BashCommandPanel {
 	private JProgressBar _extractProgressBar;
 
 	private String _filePath;
+	
+	// The add and extract workers
 	private AddFadeWorker _fadeWorker;
 	private ExtractWorker _extractWorker;
 
@@ -119,6 +131,7 @@ public class VideoEditPane extends BashCommandPanel {
 		_extractProgressSection = new JPanel();
 		_extractProgressSection.setPreferredSize(new Dimension(400,40));
 
+		// Fade in setting
 		_fadeInButton = new JButton("Add Fade-In to beginning!");
 		_fadeInButton.setPreferredSize(new Dimension(200,40));
 		JPanel bp31 = new JPanel();
@@ -130,6 +143,7 @@ public class VideoEditPane extends BashCommandPanel {
 		_fadeInTime = new JTextField("10");
 		_fadeInTime.setPreferredSize(new Dimension(40,30));
 
+		// Fade out setting
 		_fadeOutButton = new JButton("Add Fade-Out to end!");
 		_fadeOutButton.setPreferredSize(new Dimension(200,40));
 		JPanel bp41 = new JPanel();
@@ -141,21 +155,25 @@ public class VideoEditPane extends BashCommandPanel {
 		_fadeOutTime = new JTextField("10");
 		_fadeOutTime.setPreferredSize(new Dimension(40,30));
 
+		// Cancel the fade
 		_fadeCancelButton = new JButton("Cancel!");
 		_fadeCancelButton.setPreferredSize(new Dimension(150,20));
 		_fadeCancelButton.setVisible(false);
 
+		// Progress bar of the fade
 		_fadeProgressBar = new JProgressBar();
 		_fadeProgressBar.setPreferredSize(new Dimension(150,20));
 		_fadeProgressBar.setIndeterminate(true);
 		_fadeProgressBar.setVisible(false);
 		_fadeProgressBar.setStringPainted(true);
 
+		// The output name of the extract
 		_outputNameLabel = new JLabel("Output Name:");
 		_outputNameLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
 		_outputName = new JTextField("-Enter Name Here-");
 		_outputName.setPreferredSize(new Dimension(140,30));
 
+		// Shows that .mp4 is appended to the extracted file
 		_mp3Label = new JLabel(".mp4");
 		_mp3Label.setFont(new Font("Ubuntu", Font.PLAIN, 16));
 
@@ -163,16 +181,20 @@ public class VideoEditPane extends BashCommandPanel {
 		JPanel bp5 = new JPanel();
 		bp5.setPreferredSize(new Dimension(10,30));
 
+		// Start time for the extract
 		_startTimeLabel = new JLabel("Start Time:");
 		_startTimeLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
 
+		// Time length for the extract
 		_timeLengthLabel = new JLabel("Time Length:");
 		_timeLengthLabel.setFont(new Font("Ubuntu", Font.PLAIN, 16));
 
+		// Extract cancel button
 		_extractButton  = new JButton("Extract!");
 		_extractCancelButton  = new JButton("Cancel!");
 		_extractCancelButton.setEnabled(false);
 
+		// Extract progress bar
 		_extractProgressBar = new JProgressBar();
 		_extractProgressBar.setIndeterminate(true);
 		_extractProgressBar.setVisible(false);
@@ -298,8 +320,6 @@ public class VideoEditPane extends BashCommandPanel {
 		_fadeInButton.addActionListener(new fadeHandler());
 		_fadeOutButton.addActionListener(new fadeHandler());
 
-
-
 		// The cancel button for cancelling adding text.
 		_extractCancelButton.addActionListener(new ActionListener() {
 
@@ -357,18 +377,18 @@ public class VideoEditPane extends BashCommandPanel {
 							_extractWorker._songName = _filePath;
 							_extractWorker._output = _userHome + "/" + _outputName.getText();
 							_extractWorker.execute();
-
-
-
 						}
 					}
-
-
 				}
 			}
 		});
 	}
 
+	/**
+	 * Adds a fade handler which either adds a fade in to the beginning or a fade out to the end.
+	 * @author chester
+	 *
+	 */
 	class fadeHandler implements ActionListener {
 		String _type;
 		String _startFrames;
@@ -424,6 +444,7 @@ public class VideoEditPane extends BashCommandPanel {
 		}
 	}
 
+	// This is the fade orker
 	class AddFadeWorker extends SwingWorker<Void, Void> {
 
 		boolean isCancelled = false;

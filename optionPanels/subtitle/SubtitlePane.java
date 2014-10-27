@@ -66,6 +66,7 @@ public class SubtitlePane extends BashCommandPanel {
 	private JButton _removeSubtitleButton;
 	private JButton _cancelButton;
 
+	// The temp subtitle files
 	private String _userHome = System.getProperty("user.home");
 	private File _tempSubFile = new File(_userHome + "/tempSubFile.srt");
 
@@ -73,6 +74,7 @@ public class SubtitlePane extends BashCommandPanel {
 	private JFileChooser _subtitleChooser = new JFileChooser();
 	private File _subtitleFile = null;
 
+	// The add or remove worker.
 	private AddRemoveSubtitleWorker _addRemoveSubtitle = null;
 	private SubtitleBoxWorker _boxWorker = null;
 
@@ -101,6 +103,7 @@ public class SubtitlePane extends BashCommandPanel {
 		_bottomSection = new JPanel();
 		_bottomSection.setSize(new Dimension(560,50));
 
+		// The progress bar
 		_progressPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		_progressPanel.setPreferredSize(new Dimension(560,20));
 		_progressBar = new JProgressBar();
@@ -108,7 +111,6 @@ public class SubtitlePane extends BashCommandPanel {
 		_progressBar.setStringPainted(true);
 		_progressBar.setIndeterminate(true);
 		_progressBar.setVisible(false);
-
 
 		_selectPanel = new JPanel();
 		_selectPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
@@ -118,6 +120,7 @@ public class SubtitlePane extends BashCommandPanel {
 		_selectButton.setFont(new Font("Ubuntu", Font.BOLD, 16));
 		_selectButton.setPreferredSize(new Dimension(350,60));
 
+		// Holds a storage for the subtitle locations
 		_subtitlePathDisplay = new JTextField();
 		_subtitlePathDisplay.setPreferredSize(new Dimension(350,40));
 		_subtitlePathDisplay.setText("No Current Subtitle file selected!");
@@ -130,6 +133,7 @@ public class SubtitlePane extends BashCommandPanel {
 		_loadSubButton.setFont(new Font("Ubuntu", Font.BOLD, 16));
 		_loadSubButton.setSize(new Dimension(75,75));
 
+		// Combo box to select which place to load the subtitles from
 		String[] options = new String[3];
 		options[0] = ("-Select-");
 		options[1] = ("Selected File");
@@ -150,6 +154,7 @@ public class SubtitlePane extends BashCommandPanel {
 		add(_optionsPanel);
 		add(_editSubtitleScrollPanel);
 
+		// Adds the options for the subtitle panel
 		_optionsPanel.add(_topSection);
 		_optionsPanel.add(_midSection);
 		_optionsPanel.add(_bottomSection);
@@ -308,6 +313,11 @@ public class SubtitlePane extends BashCommandPanel {
 		});
 	}
 
+	/**
+	 * A chooser handler which selects a text file. The text file should be a subtitle file to be added.
+	 * @author chester
+	 *
+	 */
 	class chooserHandler implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
